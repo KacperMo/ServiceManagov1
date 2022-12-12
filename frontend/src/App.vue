@@ -1,15 +1,8 @@
 <script setup>
 import { ref } from "vue";
-import { RouterLink, RouterView, useRoute } from "vue-router";
+import { RouterLink, RouterView } from "vue-router";
 
 const activeRouteName = ref("home");
-const route = useRoute();
-// const items = [
-//   { name: "home" },
-//   { name: "user" },
-//   { name: "company" },
-//   { name: "about" },
-// ];
 const isRouteActive = (route) => {
   console.log("isRouteActive", route);
   return activeRouteName.value === route;
@@ -89,6 +82,17 @@ const setRouteActive = (route) => {
           </template>
         </RouterView>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="flex md12">
+      <footer class="item va-text-code">
+        <va-divider />
+        Route name: {{ $router.currentRoute.value.name }}
+        &bull; Route path:
+        {{ $router.currentRoute.value.path }} &bull; Route params:
+        {{ $router.currentRoute.value.params }}
+      </footer>
     </div>
   </div>
 </template>
