@@ -4,12 +4,12 @@ import { RouterLink, RouterView } from "vue-router";
 
 const activeRouteName = ref("home");
 const isRouteActive = (route) => {
-  console.log("isRouteActive", route);
+  // console.log("isRouteActive", route);
   return activeRouteName.value === route;
 };
 
 const setRouteActive = (route) => {
-  console.log("setRouteActive", route);
+  // console.log("setRouteActive", route);
   activeRouteName.value = route;
 };
 </script>
