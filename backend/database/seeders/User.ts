@@ -8,14 +8,14 @@ export default class extends BaseSeeder {
         email: 'artur-milkowski@tlen.pl',
         password: '12345678',
       },
-      {
-        email: 'harminder-virk@adonisjs.com',
-        password: 'secret',
-      },
-      {
-        email: 'julien-ripouteau@adonisjs.com',
-        password: 'supersecret',
-      },
+      // {
+      //   email: 'harminder-virk@adonisjs.com',
+      //   password: 'secret',
+      // },
+      // {
+      //   email: 'julien-ripouteau@adonisjs.com',
+      //   password: 'supersecret',
+      // },
     ])
   }
 }
