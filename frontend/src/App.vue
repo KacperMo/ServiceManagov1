@@ -47,7 +47,7 @@ const setRouteActive = (route) => {
           @click="setRouteActive('user')"
         >
           <va-sidebar-item-content>
-            <va-icon name="person" />
+            <va-icon name="face_5" />
             <va-sidebar-item-title>
               <RouterLink :to="{ name: 'user' }" class="va-link"
                 >Users</RouterLink
@@ -65,6 +65,20 @@ const setRouteActive = (route) => {
             <va-sidebar-item-title>
               <RouterLink :to="{ name: 'company' }" class="va-link"
                 >Companies</RouterLink
+              >
+            </va-sidebar-item-title>
+          </va-sidebar-item-content>
+        </va-sidebar-item>
+
+        <va-sidebar-item
+          :active="isRouteActive('login')"
+          @click="setRouteActive('login')"
+        >
+          <va-sidebar-item-content>
+            <va-icon name="login" />
+            <va-sidebar-item-title>
+              <RouterLink :to="{ name: 'login' }" class="va-link"
+                >Login</RouterLink
               >
             </va-sidebar-item-title>
           </va-sidebar-item-content>

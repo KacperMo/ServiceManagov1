@@ -28,12 +28,26 @@ const router = createRouter({
       component: () => import("../views/CompanyView.vue"),
       meta: { auth: true },
     },
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("../views/auth/LoginView.vue"),
+      meta: { auth: false },
+    },
+    {
+      path: "/logout",
+      name: "logout",
+      component: () => import("../views/auth/LogoutView.vue"),
+      meta: { auth: false },
+    },
   ],
 });
 
 router.beforeEach((to, from) => {
-  if (to.meta.auth === true) {
-    return false;
+  const user = null;
+
+  if (to.meta.auth === true && user === null && to.name !== "login") {
+    return { name: "login" };
   }
 });
 

@@ -1,5 +1,5 @@
 <script setup></script>
 
 <template>
-  <h2>Home</h2>
+  <h2 class="va-h2">Home</h2>
 </template>
