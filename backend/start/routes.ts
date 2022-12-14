@@ -24,4 +24,25 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.resource('users', 'UsersController').apiOnly()
+Route.group(() => {
+  Route.resource('users', 'UsersController').apiOnly()
+}).middleware('auth')
+
+Route.post('login', async ({ auth, request, response }) => {
+  const email = request.input('email')
+  const password = request.input('password')
+  // return { email, password }
+  try {
+    const token = await auth.use('api').attempt(email, password)
+    return token
+  } catch {
+    return response.unauthorized('Invalid credentials')
+  }
+})
+
+Route.post('/logout', async ({ auth, response }) => {
+  await auth.use('api').revoke()
+  return {
+    revoked: true,
+  }
+})

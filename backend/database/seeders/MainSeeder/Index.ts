@@ -8,6 +8,6 @@ export default class extends BaseSeeder {
 
   public async run() {
     await this.runSeeder(await import('../User'))
-    await UserFactory.createMany(10)
+    // await UserFactory.createMany(1)
   }
 }
