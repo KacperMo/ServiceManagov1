@@ -1,6 +1,7 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import User from 'App/Models/User'
 import Company from 'App/Models/Company'
+import ProductImg from 'App/Models/ProductImg'
 
 export const UserFactory = Factory.define(User, ({ faker }) => {
   return {
@@ -20,4 +21,15 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
     NIP: faker.lorem.text(),
   }
 }).build()
+
+export const ProductImgFactory = Factory.define(ProductImg, ({ faker }) => {
+  return {
+    url_base: faker.image.imageUrl(),
+    img_src1: faker.system.commonFileName('jpg'),
+    img_src2: faker.system.commonFileName('jpg'),
+    img_src3: faker.system.commonFileName('jpg'),
+    img_src4: faker.system.commonFileName('jpg'),
+  }
+}).build()
+
 

@@ -2,11 +2,11 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 
 export default class UsersController {
-  public async index({}: HttpContextContract) {
+  public async index ({}: HttpContextContract) {
     return User.all()
   }
 
-  public async store({ request, response }: HttpContextContract) {
+  public async store ({ request, response }: HttpContextContract) {
     const email = request.input('email')
     const password = request.input('password')
 
@@ -18,13 +18,13 @@ export default class UsersController {
     return response.created({ data: user })
   }
 
-  public async show({ params }: HttpContextContract) {
+  public async show ({ params }: HttpContextContract) {
     const user = await User.find(params.id)
 
     return user
   }
 
-  public async update({ request, params }: HttpContextContract) {
+  public async update ({ request, params }: HttpContextContract) {
     const user = await User.findOrFail(params.id)
     const email = request.input('email')
     await user.merge({ email: email }).save()
@@ -32,7 +32,7 @@ export default class UsersController {
     return user
   }
 
-  public async destroy({ response, params }: HttpContextContract) {
+  public async destroy ({ response, params }: HttpContextContract) {
     const user = await User.findOrFail(params.id)
     await user.delete()
 

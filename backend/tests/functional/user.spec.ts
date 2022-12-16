@@ -48,4 +48,16 @@ test.group('User', () => {
 
     response.assertStatus(204)
   })
+
+  /*  test('hash', async ({ client }) => {
+    import Hash from '@ioc:Adonis/Core/Hash'
+    // Fake hash implementation
+    Hash.fake()
+    const hashed = await Hash.make('secret') // returns "secret"
+    await Hash.verify(hashed, 'secret') // returns "true"
+
+    // Restore fake
+    Hash.restore()
+    response.assertStatus(204)
+  }) */
 })
