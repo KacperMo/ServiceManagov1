@@ -5,10 +5,10 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').unique()
+      table.increments('id')
       table.integer('user_id').unique()
       table.integer('percentage_value').nullable()
-      table.int('afiliated_user_id').notNullable()
+      table.integer('afiliated_user_id').notNullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

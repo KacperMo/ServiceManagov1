@@ -13,7 +13,7 @@ export default class extends BaseSchema {
       table.string('street',30).nullable()
       table.string('zip_code',40).nullable()
       table.string('house_number',10).nullable()
-      table.string('apartment_nuumber',40).nullable()
+      table.string('apartment_number',40).nullable()
       table.string('NIP',13).notNullable()
       table.string('phone_number',13).notNullable()
       table.string('email',50).nullable()

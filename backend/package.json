@@ -58,6 +58,7 @@
     "@adonisjs/core": "^5.9.0",
     "@adonisjs/lucid": "^18.3.0",
     "@adonisjs/repl": "^3.1.11",
+    "@shagital/adonisjs-migrations-generator": "^1.0.2",
     "luxon": "^3.1.1",
     "mysql2": "^2.3.3",
     "proxy-addr": "^2.0.7",

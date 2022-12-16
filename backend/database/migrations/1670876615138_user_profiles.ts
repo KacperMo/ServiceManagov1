@@ -13,7 +13,7 @@ export default class extends BaseSchema {
       table.string('email', 25).notNullable()
       table.integer('salary', 5)
       table.string('note', 255)
-      table.boolean('is_active', 1).notNullable()
+      table.boolean('is_active').notNullable()
       table.string('avatar', 255)
       table.string('baner', 255)
 
