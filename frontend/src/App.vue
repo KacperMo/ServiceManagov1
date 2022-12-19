@@ -71,6 +71,7 @@ const setRouteActive = (route) => {
         </va-sidebar-item>
 
         <va-sidebar-item
+          v-if="!$router.currentRoute.value.meta.isLoggedIn"
           :active="isRouteActive('login')"
           @click="setRouteActive('login')"
         >
@@ -79,6 +80,21 @@ const setRouteActive = (route) => {
             <va-sidebar-item-title>
               <RouterLink :to="{ name: 'login' }" class="va-link"
                 >Login</RouterLink
+              >
+            </va-sidebar-item-title>
+          </va-sidebar-item-content>
+        </va-sidebar-item>
+
+        <va-sidebar-item
+          v-if="$router.currentRoute.value.meta.isLoggedIn"
+          :active="isRouteActive('logout')"
+          @click="setRouteActive('logout')"
+        >
+          <va-sidebar-item-content>
+            <va-icon name="logout" />
+            <va-sidebar-item-title>
+              <RouterLink :to="{ name: 'logout' }" class="va-link"
+                >Logout</RouterLink
               >
             </va-sidebar-item-title>
           </va-sidebar-item-content>
@@ -102,10 +118,12 @@ const setRouteActive = (route) => {
     <div class="flex md12">
       <footer class="item va-text-code">
         <va-divider />
-        Route name: {{ $router.currentRoute.value.name }}
-        &bull; Route path:
+        Route name: {{ $router.currentRoute.value.name }} &bull; Route path:
         {{ $router.currentRoute.value.path }} &bull; Route params:
         {{ $router.currentRoute.value.params }}
+        <template v-if="$router.currentRoute.value.meta.isLoggedIn"
+          >&bull; User is logged in</template
+        >
       </footer>
     </div>
   </div>

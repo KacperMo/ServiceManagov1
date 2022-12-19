@@ -18,53 +18,15 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
-// import User from 'App/Models/User'
-// import Hash from '@ioc:Adonis/Core/Hash'
+import Route from "@ioc:Adonis/Core/Route";
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+Route.get("/", async () => {
+  return { hello: "world" };
+});
 
-Route.group(() => {
-  Route.resource('users', 'UsersController').apiOnly()
-}).middleware('auth')
+Route.resource("users", "UsersController").apiOnly();
+Route.group(() => {}).middleware("auth");
 
-Route.post('login', 'AuthController.login')
-Route.post('logout', 'AuthController.logout')
-Route.post('register', 'AuthController.register')
-
-// Route.post('login', async ({ auth, request, response }) => {
-//   const email = request.input('email')
-//   const password = request.input('password')
-//   // return { email, password }
-//   try {
-//     const token = await auth.use('api').attempt(email, password)
-//     return token
-//   } catch {
-//     return response.unauthorized('Invalid credentials')
-//   }
-// })
-
-// Route.post('register', async ({ auth, request, response }) => {
-//   const email = request.input('email')
-//   const password = request.input('password')
-//   const user = User.create({ email, password })
-//   // const hashedPassword = await Hash.make(password)
-//   // const token = await auth.use('api').attempt(email, hashedPassword)
-//   return user
-//   // return { email, password }
-//   // try {
-//   //   const token = await auth.use('api').attempt(email, password)
-//   //   return token
-//   // } catch {
-//   //   return response.unauthorized('Invalid credentials')
-//   // }
-// })
-
-// Route.post('/logout', async ({ auth, response }) => {
-//   await auth.use('api').revoke()
-//   return {
-//     revoked: true,
-//   }
-// })
+Route.post("login", "AuthController.login");
+Route.post("logout", "AuthController.logout");
+Route.post("register", "AuthController.register");

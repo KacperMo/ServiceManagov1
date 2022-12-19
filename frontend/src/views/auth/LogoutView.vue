@@ -1,3 +1,12 @@
+<script setup>
+import { useAuthStore } from "@/stores/auth.js";
+
+const store = useAuthStore();
+
+const response = await store.logout();
+// console.log(response.data.revoked);
+</script>
+
 <template>
-  <h2 class="va-h2">This is a logout page</h2>
+  <va-alert>Logged out successfully</va-alert>
 </template>
