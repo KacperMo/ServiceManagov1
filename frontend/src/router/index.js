@@ -41,6 +41,12 @@ const router = createRouter({
       component: () => import("../views/auth/LogoutView.vue"),
       meta: { auth: false, isLoggedIn: false },
     },
+    {
+      path: "/register",
+      name: "register",
+      component: () => import("../views/auth/RegisterView.vue"),
+      meta: { auth: false, isLoggedIn: false },
+    },
   ],
 });
 

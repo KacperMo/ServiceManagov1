@@ -11,6 +11,8 @@ export const useAuthStore = defineStore("auth", () => {
   const token = ref(null);
 
   async function login(payload) {
+    // errorMessage.value = "";
+    data.value = "";
     let res;
     try {
       res = await axios.post("login", payload);
@@ -31,6 +33,22 @@ export const useAuthStore = defineStore("auth", () => {
       token.value = null;
       res = await axios.post("logout");
     } catch (e) {
+      errorMessage.value = e.message;
+      responseStatus.value = e.response.status;
+    }
+
+    return res;
+  }
+
+  async function register(payload) {
+    data.value = "";
+    // errorMessage.value = "";
+    let res;
+    try {
+      res = await axios.post("register", payload);
+    } catch (e) {
+      console.log("error:", e);
+      data.value = e.response.data;
       errorMessage.value = e.message;
       responseStatus.value = e.response.status;
     }
@@ -63,5 +81,6 @@ export const useAuthStore = defineStore("auth", () => {
     isGuest,
     login,
     logout,
+    register,
   };
 });
