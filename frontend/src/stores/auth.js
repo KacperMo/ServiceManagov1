@@ -5,10 +5,11 @@ import axios from "axios";
 export const useAuthStore = defineStore("auth", () => {
   axios.defaults.baseURL = "http://127.0.0.1:3333/";
 
+  const tokenName = "stoken";
   const errorMessage = ref("");
   const responseStatus = ref(0);
   const data = ref("");
-  const token = ref(null);
+  const token = ref(localStorage.getItem(tokenName) || null);
 
   async function login(payload) {
     // errorMessage.value = "";
@@ -17,6 +18,7 @@ export const useAuthStore = defineStore("auth", () => {
     try {
       res = await axios.post("login", payload);
       token.value = res.data.token;
+      localStorage.setItem(tokenName, res.data.token);
     } catch (e) {
       // console.log("error:", e);
       data.value = e.response.data;
@@ -31,6 +33,7 @@ export const useAuthStore = defineStore("auth", () => {
     let res;
     try {
       token.value = null;
+      localStorage.removeItem(tokenName);
       res = await axios.post("logout");
     } catch (e) {
       errorMessage.value = e.message;
