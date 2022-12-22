@@ -9,6 +9,7 @@ export const useAuthStore = defineStore("auth", () => {
   const errorMessage = ref("");
   const responseStatus = ref(0);
   const data = ref("");
+  const validationErrors = ref(null);
   const token = ref(localStorage.getItem(tokenName) || null);
 
   async function login(payload) {
@@ -45,12 +46,13 @@ export const useAuthStore = defineStore("auth", () => {
 
   async function register(payload) {
     data.value = "";
-    // errorMessage.value = "";
+    errorMessage.value = "";
     let res;
     try {
       res = await axios.post("register", payload);
     } catch (e) {
-      console.log("error:", e);
+      // console.log("error:", e.response.data.errors);
+      validationErrors.value = e.response.data.errors;
       data.value = e.response.data;
       errorMessage.value = e.message;
       responseStatus.value = e.response.status;
@@ -78,6 +80,7 @@ export const useAuthStore = defineStore("auth", () => {
   return {
     errorMessage,
     responseStatus,
+    validationErrors,
     data,
     token,
     isLoggedIn,
