@@ -16,9 +16,7 @@ import AppNav from "@/components/AppNav.vue";
           <Suspense>
             <component :is="Component"></component>
             <template #fallback>
-              <div class="progress-bar">
-                <va-progress-bar indeterminate />
-              </div>
+              <va-progress-bar indeterminate />
             </template>
           </Suspense>
         </template>

@@ -16,7 +16,6 @@ export const useUserStore = defineStore("user", () => {
       res = await axios(urlFragment);
       users.value = res.data;
     } catch (e) {
-      // console.log("error:", e);
       errorMessage.value = e.message;
       responseStatus.value = e.response.status;
     }
