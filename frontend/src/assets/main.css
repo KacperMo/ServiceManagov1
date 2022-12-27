@@ -8,3 +8,7 @@
 .router-link-active {
   color: white;
 }
+
+.progress-bar {
+  margin-top: 1rem;
+}

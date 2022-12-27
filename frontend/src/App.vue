@@ -15,7 +15,11 @@ import AppNav from "@/components/AppNav.vue";
         <template v-if="Component">
           <Suspense>
             <component :is="Component"></component>
-            <template #fallback>Loading...</template>
+            <template #fallback>
+              <div class="progress-bar">
+                <va-progress-bar indeterminate />
+              </div>
+            </template>
           </Suspense>
         </template>
       </RouterView>
