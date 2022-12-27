@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 
 const activeRouteName = ref("home");
+
 const isRouteActive = (route) => {
   // console.log("isRouteActive", route);
   return activeRouteName.value === route;
@@ -17,7 +18,7 @@ const setRouteActive = (route) => {
 <template>
   <div class="row">
     <div class="flex">
-      <div class="item">
+      <div class="item item-margin">
         <va-sidebar-item
           :active="isRouteActive('home')"
           @click="setRouteActive('home')"

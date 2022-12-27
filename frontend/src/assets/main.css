@@ -1,1 +1,10 @@
 /* @import './base.css'; */
+
+.item-margin {
+  margin-right: 1rem;
+}
+
+.router-link-exact-active,
+.router-link-active {
+  color: white;
+}
