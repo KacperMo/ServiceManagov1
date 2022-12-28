@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 import axios from "axios";
 
 export const useAuthStore = defineStore("auth", () => {
-  axios.defaults.baseURL = "http://127.0.0.1:3333/";
+  // axios.defaults.baseURL = "http://127.0.0.1:3333/";
 
   const tokenName = "stoken";
   const errorMessage = ref("");

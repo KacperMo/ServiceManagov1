@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
+import "./lib/axios";
 import { createVuestic } from "vuestic-ui";
 import "./assets/main.css";
 import "vuestic-ui/css";

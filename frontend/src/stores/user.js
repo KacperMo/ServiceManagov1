@@ -3,7 +3,7 @@ import { ref } from "vue";
 import axios from "axios";
 
 export const useUserStore = defineStore("user", () => {
-  axios.defaults.baseURL = "http://127.0.0.1:3333/";
+  // axios.defaults.baseURL = "http://127.0.0.1:3333/";
   // axios.defaults.withCredentials = true;
 
   const errorMessage = ref("");
