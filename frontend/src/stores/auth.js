@@ -35,7 +35,7 @@ export const useAuthStore = defineStore("auth", () => {
     try {
       token.value = null;
       localStorage.removeItem(tokenName);
-      res = await axios.post("logout");
+      res = await axios.post("logout1");
     } catch (e) {
       errorMessage.value = e.message;
       responseStatus.value = e.response.status;

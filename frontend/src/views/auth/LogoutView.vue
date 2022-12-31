@@ -1,12 +1,20 @@
 <script setup>
+import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth.js";
 
 const store = useAuthStore();
+const router = useRouter();
 
-const response = await store.logout();
-// console.log(response.data.revoked);
+try {
+  const response = await store.logout();
+  const revoked = response.data.revoked;
+
+  if (revoked) {
+    router.push({ name: "home" });
+  }
+} catch (_) {}
 </script>
 
 <template>
-  <va-alert>Logged out successfully</va-alert>
+  <va-alert color="danger">{{ store.errorMessage }}</va-alert>
 </template>
