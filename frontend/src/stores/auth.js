@@ -3,8 +3,6 @@ import { computed, ref } from "vue";
 import axios from "axios";
 
 export const useAuthStore = defineStore("auth", () => {
-  // axios.defaults.baseURL = "http://127.0.0.1:3333/";
-
   const tokenName = "stoken";
   const errorMessage = ref("");
   const responseStatus = ref(0);
@@ -13,7 +11,7 @@ export const useAuthStore = defineStore("auth", () => {
   const token = ref(localStorage.getItem(tokenName) || null);
 
   async function login(payload) {
-    // errorMessage.value = "";
+    errorMessage.value = "";
     data.value = "";
     let res;
     try {
@@ -21,10 +19,11 @@ export const useAuthStore = defineStore("auth", () => {
       token.value = res.data.token;
       localStorage.setItem(tokenName, res.data.token);
     } catch (e) {
-      // console.log("error:", e);
-      data.value = e.response.data;
       errorMessage.value = e.message;
-      responseStatus.value = e.response.status;
+      if (e.response) {
+        data.value = e.response.data;
+        responseStatus.value = e.response.status;
+      }
     }
 
     return res;

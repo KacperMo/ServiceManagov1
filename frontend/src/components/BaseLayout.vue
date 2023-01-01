@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="flex">
-      <div class="item item-margin">
+      <div class="item mr-1">
         <slot name="nav"></slot>
       </div>
     </div>

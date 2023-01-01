@@ -18,8 +18,10 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <!-- <h1>__{{ store.errorMessage }}__</h1> -->
   <h2 class="va-h2">Login</h2>
+  <va-alert v-if="store.errorMessage" color="danger" class="mb-1">
+    {{ store.errorMessage }}
+  </va-alert>
   <va-alert v-if="store.data" color="danger">{{ store.data }}</va-alert>
   <va-form @submit.prevent="onSubmit" tag="form" style="width: 300px">
     <va-input v-model="email" type="email" label="Login" autofocus="true" />
