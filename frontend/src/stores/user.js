@@ -5,7 +5,7 @@ import axios from "axios";
 export const useUserStore = defineStore("user", () => {
   const errorMessage = ref("");
   const responseStatus = ref(0);
-  const users = ref(null);
+  const users = ref([]);
 
   async function all(urlFragment) {
     errorMessage.value = "";

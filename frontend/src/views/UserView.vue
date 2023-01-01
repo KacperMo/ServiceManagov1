@@ -10,7 +10,7 @@ await store.all("users");
   <va-alert v-if="store.errorMessage" color="danger" class="mb-1">
     {{ store.errorMessage }}
   </va-alert>
-  <div v-if="store.users" class="va-table-responsive">
+  <div v-if="store.users.length" class="va-table-responsive">
     <table class="va-table">
       <thead>
         <tr>
@@ -28,4 +28,5 @@ await store.all("users");
       </tbody>
     </table>
   </div>
+  <va-alert v-else color="info">Brak użytkowników</va-alert>
 </template>
