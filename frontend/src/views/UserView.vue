@@ -6,8 +6,11 @@ await store.all("users");
 </script>
 
 <template>
-  <h2 class="va-h2">This is a user page</h2>
-  <div class="va-table-responsive">
+  <h2 class="va-h2">Users</h2>
+  <va-alert v-if="store.errorMessage" color="danger" class="mb-1">
+    {{ store.errorMessage }}
+  </va-alert>
+  <div v-if="store.users" class="va-table-responsive">
     <table class="va-table">
       <thead>
         <tr>

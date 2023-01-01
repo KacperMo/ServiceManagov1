@@ -30,6 +30,7 @@ export const useAuthStore = defineStore("auth", () => {
   }
 
   async function logout() {
+    errorMessage.value = "";
     let res;
     try {
       token.value = null;
