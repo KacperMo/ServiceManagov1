@@ -25,6 +25,7 @@ Route.get("/", async () => {
 });
 
 Route.resource("users", "UsersController").apiOnly();
+Route.resource("companies", "CompaniesController").apiOnly();
 Route.group(() => {}).middleware("auth");
 
 Route.post("login", "AuthController.login");

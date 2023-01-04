@@ -10,6 +10,7 @@ export default class extends BaseSeeder {
 
   public async run() {
     await this.runSeeder(await import("../User"));
+    await this.runSeeder(await import("../Company"));
     // await UserFactory.createMany(10)
     // await this.runSeeder(await import("../ProductImg"));
     // await ProductImgFactory.createMany(10);
