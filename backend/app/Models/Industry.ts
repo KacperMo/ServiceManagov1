@@ -6,9 +6,6 @@ export default class Industry extends BaseModel {
   public id: number
 
   @column()
-  public company_id: string
-
-  @column()
   public name: string
 
   @column.dateTime({ autoCreate: true })
