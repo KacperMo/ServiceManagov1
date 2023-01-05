@@ -40,6 +40,11 @@ await store.getOne("companies", route.params.id);
           <RouterLink :to="{ name: 'companies.index' }" class="va-link"
             >Powrót</RouterLink
           >
+          <RouterLink
+            :to="{ name: 'companies.edit', params: store.data.id }"
+            class="va-link"
+            >Edytuj</RouterLink
+          >
         </va-card-actions>
       </va-card>
     </div>

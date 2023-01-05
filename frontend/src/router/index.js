@@ -36,6 +36,12 @@ const router = createRouter({
       meta: { auth: true, isLoggedIn: false },
     },
     {
+      path: "/companies/:id/edit",
+      name: "companies.edit",
+      component: () => import("../views/Company/EditView.vue"),
+      meta: { auth: true, isLoggedIn: false },
+    },
+    {
       path: "/login",
       name: "login",
       component: () => import("../views/auth/LoginView.vue"),
