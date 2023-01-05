@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('company_id',10).notNullable()
       table.integer('ammount',5).notNullable()
-      table.string('comfirmation',10).nullable()
+      table.boolean('comfirmation').nullable()
       table.datetime('created_at', { useTz: true })
     })
   }
