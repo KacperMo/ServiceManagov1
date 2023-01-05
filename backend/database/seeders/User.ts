@@ -9,6 +9,7 @@ export default class extends BaseSeeder {
         password: "12345678",
       },
       {
+<<<<<<< Updated upstream
         email: "harminder-virk@adonisjs.com",
         password: "secret",
       },
@@ -17,5 +18,15 @@ export default class extends BaseSeeder {
         password: "supersecret",
       },
     ]);
+=======
+        email: 'harminder-virk@adonisjs.com',
+        password: 'secret',
+      },
+      {
+        email: 'julien-ripouteau@adonisjs.com',
+        password: 'supersecret',
+      },
+    ])
+>>>>>>> Stashed changes
   }
 }

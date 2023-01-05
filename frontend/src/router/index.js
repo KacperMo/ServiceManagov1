@@ -40,12 +40,15 @@ const router = createRouter({
       name: "logout",
       component: () => import("../views/auth/LogoutView.vue"),
       meta: { auth: false, isLoggedIn: false },
+<<<<<<< Updated upstream
     },
     {
       path: "/register",
       name: "register",
       component: () => import("../views/auth/RegisterView.vue"),
       meta: { auth: false, isLoggedIn: false },
+=======
+>>>>>>> Stashed changes
     },
   ],
 });

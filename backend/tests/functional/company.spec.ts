@@ -1,11 +1,19 @@
 import { test } from '@japa/runner'
 import { CompanyFactory } from 'Database/factories'
+import { UserFactory } from 'Database/factories'
 
 test.group('Company', () => {
   test('index', async ({ client }) => {
-    const response = await client.get('/company')
+    const user = await UserFactory.create()
+    const response = await client.get('/company').loginAs(user)
 
     response.assertStatus(200)
+  })
+
+  test('unauthorized_index', async ({ client }) => {
+    const response = await client.get('/company')
+
+    response.assertStatus(401)
   })
 
   test('store', async ({ client }) => {
@@ -30,9 +38,15 @@ test.group('Company', () => {
   })
 
   test('update', async ({ client }) => {
+    const user = await UserFactory.create()
     const company = await CompanyFactory.create()
     const comapny1 = await CompanyFactory.make()
-    const response = await client.put(`/company/${company.id}`).json({ name: comapny1.name })
+    const response = await client
+      .put(`/company/${company.id}`)
+      .json({
+        name: comapny1.name,
+      })
+      .loginAs(user)
 
     response.assertStatus(200)
     response.assertBodyContains({ name: comapny1.name })

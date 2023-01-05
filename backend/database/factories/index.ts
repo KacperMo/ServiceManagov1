@@ -17,7 +17,7 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
     industry_id: faker.datatype.number(),
     owner_id: faker.datatype.number(),
     city: faker.address.cityName(),
-    phone_number: faker.phone.number(' ###-###-###'),
+    phone_number: faker.phone.number('###-###-###'),
     NIP: faker.lorem.text(),
   }
 }).build()
@@ -31,5 +31,4 @@ export const ProductImgFactory = Factory.define(ProductImg, ({ faker }) => {
     img_src4: faker.system.commonFileName('jpg'),
   }
 }).build()
-
 

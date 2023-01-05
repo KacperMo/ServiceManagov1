@@ -24,9 +24,10 @@ Route.get("/", async () => {
   return { hello: "world" };
 });
 
-Route.resource("users", "UsersController").apiOnly();
-Route.resource("companies", "CompaniesController").apiOnly();
-Route.group(() => {}).middleware("auth");
+Route.group(() => {
+  Route.resource('users', 'UsersController').apiOnly()
+  Route.resource('company', 'CompaniesController').apiOnly()
+}).middleware('auth')
 
 Route.post("login", "AuthController.login");
 Route.post("logout", "AuthController.logout");

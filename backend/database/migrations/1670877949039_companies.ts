@@ -3,11 +3,11 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class extends BaseSchema {
   protected tableName = 'companies'
 
-  public async up() {
+  public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').notNullable()
-      table.string('name').notNullable().unique()
       table.integer('industry_id',10).notNullable()
+      table.string('name').notNullable().unique()
       table.integer('owner_id',10).notNullable()
       table.string('city',30).nullable()
       table.string('street',30).nullable()
@@ -18,10 +18,6 @@ export default class extends BaseSchema {
       table.string('phone_number',13).notNullable()
       table.string('email',50).nullable()
       table.string('logo',250).nullable()
-
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
       table.datetime('created_at', { useTz: true })
       table.datetime('updated_at', { useTz: true })
     })
