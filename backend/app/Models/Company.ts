@@ -15,31 +15,31 @@ export default class Company extends BaseModel {
   public owner_id: number
 
   @column()
-  public city: string 
-  
-  @column()
-  public street: string 
+  public city: string
 
   @column()
-  public zip_code: string 
+  public street: string
 
   @column()
-  public house_number: string 
+  public zip_code: string
 
   @column()
-  public apartment_number: string 
+  public house_number: string
 
   @column()
-  public NIP: string 
+  public apartment_number: string
 
   @column()
-  public phone_number: string 
+  public nip: string
 
   @column()
-  public email: string 
+  public phone_number: string
 
   @column()
-  public logo: string 
+  public email: string
+
+  @column()
+  public logo: string
 
   @column()
   public rememberMeToken: string

@@ -15,14 +15,14 @@ export default class extends BaseSeeder {
         owner_id:1,
         city:'Warszawa',
         phone_number:'123-123-123',
-        NIP:'666-666-16-66',
+        nip:'666-666-16-66',
       },{
         name:'Serwis GSM Y',
         industry_id:1,
         owner_id:2,
         city:'Kraków',
         phone_number:'333-123-123',
-        NIP:'111-222-33-44',
+        nip:'111-222-33-44',
         logo:'./documents/user/files/user1/logo.png',
       },{
         name:'Serwis GSM Z',
@@ -30,7 +30,7 @@ export default class extends BaseSeeder {
         owner_id:3,
         city:'Sałata',
         phone_number:'444-124-124',
-        NIP:'444-222-33-44',
+        nip:'444-222-33-44',
         logo:'./documents/user/files/user2/logo.png',
       },
     ])

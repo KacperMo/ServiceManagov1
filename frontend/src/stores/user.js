@@ -3,6 +3,13 @@ import { ref } from "vue";
 import axios from "axios";
 
 export const useUserStore = defineStore("user", () => {
+<<<<<<< Updated upstream
+  // axios.defaults.baseURL = "http://127.0.0.1:3333/";
+=======
+  axios.defaults.baseURL = "http://127.0.0.1:3333/";
+>>>>>>> Stashed changes
+  // axios.defaults.withCredentials = true;
+
   const errorMessage = ref("");
   const responseStatus = ref(0);
   const users = ref([]);
@@ -14,6 +21,10 @@ export const useUserStore = defineStore("user", () => {
       res = await axios(urlFragment);
       users.value = res.data;
     } catch (e) {
+<<<<<<< Updated upstream
+=======
+      // console.log("error:", e);
+>>>>>>> Stashed changes
       errorMessage.value = e.message;
       if (e.response) {
         responseStatus.value = e.response.status;

@@ -9,13 +9,13 @@ export default class extends BaseSeeder {
         password: "12345678",
       },
       {
-        email: "harminder-virk@adonisjs.com",
-        password: "secret",
+        email: 'harminder-virk@adonisjs.com',
+        password: 'secret',
       },
       {
-        email: "jan-kowalski@gmail.com",
-        password: "supersecret",
+        email: 'julien-ripouteau@adonisjs.com',
+        password: 'supersecret',
       },
-    ]);
+    ])
   }
 }
