@@ -13,7 +13,7 @@ export default class extends BaseSchema {
       table.string('position', 25)
       table.string('name', 25).notNullable()
       table.string('surname', 25)
-      table.string('phone_number', 25).notNullable()
+      table.string('phone', 25).notNullable()
       table.string('email', 25).notNullable()
       table.integer('salary', 5)
       table.string('note', 255)

@@ -18,7 +18,7 @@ export default class UserProfile extends BaseModel {
   public surname: string
 
   @column()
-  public phone_number: string
+  public phone: string
 
   @column()
   public email: string
