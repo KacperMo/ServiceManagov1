@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'password_reser_tokens'
+  protected tableName = 'password_reset_tokens'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
@@ -10,6 +10,7 @@ export default class extends BaseSchema {
         .unsigned()
         .references('user_profiles.id')
         .onDelete('CASCADE')
+      table.string('token')
       table.datetime('created_at', { useTz: true })
       table.datetime('drop_date', { useTz: true })
     })
