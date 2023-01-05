@@ -57,7 +57,7 @@ const setRouteActive = (route) => {
     <va-sidebar-item-content>
       <va-icon name="apartment" />
       <va-sidebar-item-title>
-        <RouterLink :to="{ name: 'company' }" class="va-link"
+        <RouterLink :to="{ name: 'companies.index' }" class="va-link"
           >Companies</RouterLink
         >
       </va-sidebar-item-title>

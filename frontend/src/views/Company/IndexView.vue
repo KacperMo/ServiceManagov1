@@ -2,8 +2,8 @@
 import { useStore } from "@/stores/store.js";
 
 const store = useStore();
+
 await store.all("companies");
-console.log(store);
 </script>
 
 <template>
@@ -11,7 +11,7 @@ console.log(store);
   <va-alert v-if="store.errorMessage" color="danger" class="mb-1">
     {{ store.errorMessage }}
   </va-alert>
-  <div v-if="store.data.length" class="va-table-responsive">
+  <div v-if="store.collection.length" class="va-table-responsive">
     <table class="va-table">
       <thead>
         <tr>
@@ -20,15 +20,23 @@ console.log(store);
           <th>NIP</th>
           <th>Telefon</th>
           <th>Utworzono</th>
+          <th>Akcja</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="company in store.data" :key="company.id">
+        <tr v-for="company in store.collection" :key="company.id">
           <td>{{ company.id }}</td>
           <td>{{ company.city }}</td>
           <td>{{ company.NIP }}</td>
           <td>{{ company.phone_number }}</td>
           <td>{{ company.created_at }}</td>
+          <td>
+            <RouterLink
+              :to="{ name: 'companies.show', params: { id: company.id } }"
+              class="va-link"
+              >Pokaż</RouterLink
+            >
+          </td>
         </tr>
       </tbody>
     </table>

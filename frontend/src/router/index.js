@@ -25,8 +25,14 @@ const router = createRouter({
     },
     {
       path: "/companies",
-      name: "company",
-      component: () => import("../views/CompanyView.vue"),
+      name: "companies.index",
+      component: () => import("../views/Company/IndexView.vue"),
+      meta: { auth: true, isLoggedIn: false },
+    },
+    {
+      path: "/companies/:id",
+      name: "companies.show",
+      component: () => import("../views/Company/ShowView.vue"),
       meta: { auth: true, isLoggedIn: false },
     },
     {

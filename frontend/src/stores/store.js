@@ -5,14 +5,16 @@ import axios from "axios";
 export const useStore = defineStore("store", () => {
   const errorMessage = ref("");
   const responseStatus = ref(0);
-  const data = ref([]);
+  const collection = ref([]);
+  const data = ref(null);
 
   async function all(urlFragment) {
     errorMessage.value = "";
+    responseStatus.value = 0;
     let res;
     try {
       res = await axios(urlFragment);
-      data.value = res.data;
+      collection.value = res.data;
     } catch (e) {
       errorMessage.value = e.message;
       if (e.response) {
@@ -23,5 +25,21 @@ export const useStore = defineStore("store", () => {
     return res;
   }
 
-  return { errorMessage, responseStatus, data, all };
+  async function getOne(urlFragment, id) {
+    errorMessage.value = "";
+    responseStatus.value = 0;
+    let res;
+    try {
+      res = await axios(`${urlFragment}/${id}`);
+      data.value = res.data; // console.log(res.data);
+    } catch (e) {
+      // console.log(e);
+      errorMessage.value = e.message;
+      responseStatus.value = e.response.status;
+    }
+
+    return res;
+  }
+
+  return { errorMessage, responseStatus, collection, data, all, getOne };
 });
