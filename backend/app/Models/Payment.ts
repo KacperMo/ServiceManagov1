@@ -12,7 +12,7 @@ export default class Payment extends BaseModel {
   public ammount: number
 
   @column()
-  public comfirmation: string
+  public comfirmation: boolean
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime

@@ -9,7 +9,7 @@ export default class ServiceOrder extends BaseModel {
   public customer_id: number
 
   @column()
-  public RMK: string
+  public rma: string
 
   @column()
   public type: string

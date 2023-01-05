@@ -50,7 +50,6 @@ export default class Product extends BaseModel {
   @column()
   public invoice: boolean
 
-
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

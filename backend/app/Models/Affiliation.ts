@@ -6,7 +6,7 @@ export default class Affiliation extends BaseModel {
   public id: number
 
   @column()
-  public percentage_value: string
+  public percentage_value: number
 
   @column()
   public afiliated_company_id: string

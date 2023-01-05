@@ -6,7 +6,7 @@ export default class Category extends BaseModel {
   public id: number
 
   @column()
-  public industry_id: string
+  public industry_id: number
 
   @column()
   public name: string
