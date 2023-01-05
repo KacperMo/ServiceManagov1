@@ -9,7 +9,7 @@ export default class PasswordResetToken extends BaseModel {
   public user_id: number
 
   @column()
-  public toker: string
+  public token: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

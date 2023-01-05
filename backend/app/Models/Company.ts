@@ -30,7 +30,7 @@ export default class Company extends BaseModel {
   public apartment_number: string
 
   @column()
-  public NIP: string
+  public nip: string
 
   @column()
   public phone_number: string

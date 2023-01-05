@@ -14,7 +14,7 @@ export default class extends BaseSchema {
       table.string('zip_code',40).nullable()
       table.string('house_number',10).nullable()
       table.string('apartment_number',40).nullable()
-      table.string('NIP',13).notNullable()
+      table.string('nip',13).notNullable()
       table.string('phone_number',13).notNullable()
       table.string('email',50).nullable()
       table.string('logo',250).nullable()
