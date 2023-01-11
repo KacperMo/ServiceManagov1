@@ -17,22 +17,23 @@ test.group('Company', () => {
   })
 
   test('store', async ({ client }) => {
+    const user = await UserFactory.create()
     const company = await CompanyFactory.make()
     const response = await client.post('/company').json({
       name: company.name,
       city: company.city,
       phone_number: company.phone_number,
-      NIP: company.NIP,
-      industry_id: company.industry_id,
-      owner_id: company.owner_id,
+      nip: company.nip,
     })
+      .loginAs(user)
 
     response.assertStatus(201)
   })
 
   test('show', async ({ client }) => {
+    const user = await UserFactory.create()
     const company = await CompanyFactory.create()
-    const response = await client.get(`/company/${company.id}`)
+    const response = await client.get(`/company/${company.id}`).loginAs(user)
 
     response.assertStatus(200)
   })
@@ -43,9 +44,7 @@ test.group('Company', () => {
     const comapny1 = await CompanyFactory.make()
     const response = await client
       .put(`/company/${company.id}`)
-      .json({
-        name: comapny1.name,
-      })
+      .json({ name: comapny1.name })
       .loginAs(user)
 
     response.assertStatus(200)
@@ -53,8 +52,9 @@ test.group('Company', () => {
   })
 
   test('destroy', async ({ client }) => {
+    const user = await UserFactory.create()
     const company = await CompanyFactory.create()
-    const response = await client.delete(`/company/${company.id}`)
+    const response = await client.delete(`/company/${company.id}`).loginAs(user)
 
     response.assertStatus(204)
   })
