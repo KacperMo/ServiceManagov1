@@ -3,7 +3,6 @@ import { computed, ref } from "vue";
 import axios from "axios";
 
 export const useAuthStore = defineStore("auth", () => {
-<<<<<<< Updated upstream
   // axios.defaults.baseURL = "http://127.0.0.1:3333/";
 
   const tokenName = "stoken";
@@ -16,24 +15,11 @@ export const useAuthStore = defineStore("auth", () => {
   async function login(payload) {
     errorMessage.value = "";
     data.value = "";
-=======
-  axios.defaults.baseURL = "http://127.0.0.1:3333/";
-
-  const errorMessage = ref("");
-  const responseStatus = ref(0);
-  const data = ref("");
-  const token = ref(null);
-
-  async function login(payload) {
->>>>>>> Stashed changes
     let res;
     try {
       res = await axios.post("login", payload);
       token.value = res.data.token;
-<<<<<<< Updated upstream
       localStorage.setItem(tokenName, res.data.token);
-=======
->>>>>>> Stashed changes
     } catch (e) {
       errorMessage.value = e.message;
       if (e.response) {
@@ -50,10 +36,7 @@ export const useAuthStore = defineStore("auth", () => {
     let res;
     try {
       token.value = null;
-<<<<<<< Updated upstream
       localStorage.removeItem(tokenName);
-=======
->>>>>>> Stashed changes
       res = await axios.post("logout");
     } catch (e) {
       errorMessage.value = e.message;
@@ -63,7 +46,6 @@ export const useAuthStore = defineStore("auth", () => {
     return res;
   }
 
-<<<<<<< Updated upstream
   async function register(payload) {
     data.value = "";
     errorMessage.value = "";
@@ -81,8 +63,6 @@ export const useAuthStore = defineStore("auth", () => {
     return res;
   }
 
-=======
->>>>>>> Stashed changes
   const isLoggedIn = computed(() => {
     if (token.value == null) {
       return false;
@@ -102,19 +82,13 @@ export const useAuthStore = defineStore("auth", () => {
   return {
     errorMessage,
     responseStatus,
-<<<<<<< Updated upstream
     validationErrors,
-=======
->>>>>>> Stashed changes
     data,
     token,
     isLoggedIn,
     isGuest,
     login,
     logout,
-<<<<<<< Updated upstream
     register,
-=======
->>>>>>> Stashed changes
   };
 });
