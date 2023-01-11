@@ -16,7 +16,7 @@ export default class CompaniesController {
     const zip_code = request.input('zip_code')
     const house_number = request.input('house_number')
     const apartment_number = request.input('apartment_number')
-    const nip = request.input('NIP')
+    const nip = request.input('nip')
     const phone_number = request.input('phone_number')
     const email = request.input('email')
     const logo = request.input('logo')
@@ -30,7 +30,7 @@ export default class CompaniesController {
       zip_code: zip_code,
       house_number: house_number,
       apartment_number: apartment_number,
-      NIP: nip,
+      nip: nip,
       phone_number: phone_number,
       email: email,
       logo: logo,
@@ -50,9 +50,11 @@ export default class CompaniesController {
 
   public async update ({request, params}: HttpContextContract) {
     const company = await Company.findOrFail(params.id)
-    const name = request.input('name')
-    // fill with all company colums
-    await company.merge({ name: name}).save()
+    company.merge(request.only([
+      'name', 'email', 'phone', 'city', 'street', 'zip_code',
+      'house_number', 'apartment_number', 'nip', 'phone_number',
+      'email', 'logo', 'rememberMeToken']))
+    await company.save()
     return company
   }
 
