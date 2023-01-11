@@ -30,7 +30,7 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
     owner_id: faker.datatype.number(),
     city: faker.address.cityName(),
     phone_number: faker.phone.number('###-###-###'),
-    nip: faker.lorem.text(),
+    nip: faker.phone.number('###-###-##-##'),
   }
 }).build()
 
