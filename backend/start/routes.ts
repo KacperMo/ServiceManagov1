@@ -26,6 +26,7 @@ Route.get('/', async () => {
 
 Route.group(() => {
   Route.resource('users', 'User/UsersController').apiOnly()
+  Route.resource('profile', 'User/UserProfilesController').apiOnly()
   Route.resource('company', 'Company/CompaniesController').apiOnly()
 }).middleware(['auth'])
 
