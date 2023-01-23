@@ -18,19 +18,19 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import Route from "@ioc:Adonis/Core/Route";
 
-Route.get('/', async () => {
-  return { ServiceManago: 'v2.0' }
-})
+Route.get("/", async () => {
+  return { ServiceManago: "v2.0" };
+});
 
-Route.group(() => {
-  Route.resource('users', 'User/UsersController').apiOnly()
-  Route.resource('profile', 'User/UserProfilesController').apiOnly()
-  Route.resource('company', 'Company/CompaniesController').apiOnly()
-  Route.resource('ticket', 'Customer/ServiceOrdersConrtoller').apiOnly()
-}).middleware(['auth'])
+// Route.group(() => {
+Route.resource("users", "User/UsersController").apiOnly();
+Route.resource("profile", "User/UserProfilesController").apiOnly();
+Route.resource("companies", "Company/CompaniesController").apiOnly();
+Route.resource("ticket", "Customer/ServiceOrdersConrtoller").apiOnly();
+// }).middleware(['auth'])
 
-Route.post('login', 'AuthController.login')
-Route.post('logout', 'AuthController.logout')
-Route.post('register', 'AuthController.register')
+Route.post("login", "AuthController.login");
+Route.post("logout", "AuthController.logout");
+Route.post("register", "AuthController.register");
