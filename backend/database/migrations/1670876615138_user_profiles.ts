@@ -5,10 +5,9 @@ export default class extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
-        .unsigned()
+      table.uuid('id')
         .references('users.id')
-        .onDelete('CASCADE') // delete profile when user is deleted
+        .onDelete('CASCADE')
       table.integer('company_id')
       table.string('position', 25)
       table.string('name', 25).notNullable()

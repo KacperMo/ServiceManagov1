@@ -1,52 +1,88 @@
-import { DateTime } from "luxon";
-import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import { DateTime } from 'luxon'
+import { BaseModel, column, hasMany, HasMany, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import BusinessCard from './BusinessCard'
+import Payment from './Payment'
+import CalendarEvent from './CalendarEvent'
+import Notyfication from './Notyfication'
+import User from './User'
+import Product from './Product'
+import ZplLabel from './ZplLabel'
+import SmsApi from './SmsApi'
+import ServiceList from './ServiceList'
 
 export default class Company extends BaseModel {
   @column({ isPrimary: true })
-  public id: number;
+  public id: string
 
   @column()
-  public industry_id: number;
+  public industry_id: number
 
   @column()
-  public owner_id: number;
+  public owner_id: number
 
   @column()
-  public name: string;
+  public name: string
 
   @column()
-  public city: string;
+  public city: string
 
   @column()
-  public street: string;
+  public street: string
 
   @column()
-  public zip_code: string;
+  public zip_code: string
 
   @column()
-  public house_number: string;
+  public house_number: string
 
   @column()
-  public apartment_number: string;
+  public apartment_number: string
 
   @column()
-  public nip: string;
+  public nip: string
 
   @column()
-  public phone_number: string;
+  public phone_number: string
 
   @column()
-  public email: string;
+  public email: string
 
   @column()
-  public logo: string;
+  public logo: string
 
   @column()
-  public rememberMeToken: string;
+  public rememberMeToken: string
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime;
+  public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime;
+  public updatedAt: DateTime
+
+  @hasMany(() => BusinessCard)
+  public businessCard: HasMany<typeof BusinessCard>
+
+  @hasMany(() => Payment)
+  public payment: HasMany<typeof Payment>
+
+  @hasMany(() => CalendarEvent)
+  public calendarEvent: HasMany<typeof CalendarEvent>
+
+  @hasMany(() => Notyfication)
+  public notyfication: HasMany<typeof Notyfication>
+
+  @hasMany(() => User)
+  public user: HasMany<typeof User>
+
+  @hasMany(() => Product)
+  public product: HasMany<typeof Product>
+
+  @hasMany(() => ZplLabel)
+  public zplLabel: HasMany<typeof ZplLabel>
+
+  @hasOne(() => SmsApi)
+  public smsapi: HasOne<typeof SmsApi>
+
+  @hasOne(() => ServiceList)
+  public serviceList: HasOne<typeof ServiceList>
 }

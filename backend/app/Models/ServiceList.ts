@@ -3,7 +3,7 @@ import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class ServiceList extends BaseModel {
   @column({ isPrimary: true })
-  public company_id: number
+  public company_id: string
 
   @column()
   public s1: string

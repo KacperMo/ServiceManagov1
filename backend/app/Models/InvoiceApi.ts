@@ -3,7 +3,7 @@ import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class InvoiceApi extends BaseModel {
   @column({ isPrimary: true })
-  public company_id: number
+  public company_id: string
 
   @column()
   public host_name: string
