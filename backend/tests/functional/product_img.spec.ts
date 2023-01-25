@@ -42,8 +42,8 @@ test.group('Product imgs', () => {
 
     test('update', async ({ client }) => {
       const user = await UserFactory.create()
-      const imgs = await ServiceOrderFactory.create()
-      const imgs1 = await ServiceOrderFactory.make()
+      const imgs = await ProductImgFactory.create()
+      const imgs1 = await ProductImgFactory.make()
       const response = await client
         .put(`/create/${imgs.id}`)
         .json({ img_src1: imgs1.img_src1 })
@@ -55,7 +55,7 @@ test.group('Product imgs', () => {
   
     test('destroy', async ({ client }) => {
       const user = await UserFactory.create()
-      const imgs = await ServiceOrderFactory.create()
+      const imgs = await ProductImgFactory.create()
       const response = await client.delete(`/imgs_collection/${imgs.id}`).loginAs(user)
   
       response.assertStatus(204)
