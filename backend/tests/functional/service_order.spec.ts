@@ -5,13 +5,13 @@ import { ServiceOrderFactory } from 'Database/factories'
 test.group('Service order', () => {
   test('index', async ({ client }) => {
     const user = await UserFactory.create()
-    const response = await client.get('/ticket').loginAs(user)
+    const response = await client.get('/tickets').loginAs(user)
 
     response.assertStatus(200)
   })
 
   test('unauthorized_index', async ({ client }) => {
-    const response = await client.get('/ticket')
+    const response = await client.get('/tickets')
 
     response.assertStatus(401)
   })
@@ -33,7 +33,7 @@ test.group('Service order', () => {
   test('show', async ({ client }) => {
     const user = await UserFactory.create()
     const ticket = await ServiceOrderFactory.create()
-    const response = await client.get(`/ticket/${ticket.id}`).loginAs(user)
+    const response = await client.get(`/tickets/${ticket.id}`).loginAs(user)
 
     response.assertStatus(200)
   })
@@ -43,7 +43,7 @@ test.group('Service order', () => {
     const ticket = await ServiceOrderFactory.create()
     const ticket1 = await ServiceOrderFactory.make()
     const response = await client
-      .put(`/ticket/${company.id}`)
+      .put(`/tickets/${company.id}`)
       .json({ comment: comapny1.comment })
       .loginAs(user)
 
@@ -54,7 +54,7 @@ test.group('Service order', () => {
   test('destroy', async ({ client }) => {
     const user = await UserFactory.create()
     const ticket = await ServiceOrderFactory.create()
-    const response = await client.delete(`/ticket/${ticket.id}`).loginAs(user)
+    const response = await client.delete(`/tickets/${ticket.id}`).loginAs(user)
 
     response.assertStatus(204)
   })
