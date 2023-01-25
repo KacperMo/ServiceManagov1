@@ -3,6 +3,10 @@ import { UserFactory } from 'Database/factories'
 import { CalendarEventFactory } from 'Database/factories'
 
 test.group('Calendar event', () => {
+/*   test.group.each.setup(() => {
+    console.log('executed before the test')
+  }) */
+
   test('index', async ({ }) => {
     const user = await UserFactory.create()
     const response = await client.get('/events').loginAs(user)
@@ -53,7 +57,6 @@ test.group('Calendar event', () => {
       const user = await UserFactory.create()
       const event = await CalendarEventFactory.create()
       const response = await client.delete(`/events/${event.id}`).loginAs(user)
-  
       response.assertStatus(204)
     })
 

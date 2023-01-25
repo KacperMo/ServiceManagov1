@@ -1,7 +1,6 @@
 import { test } from '@japa/runner'
 import { UserFactory } from 'Database/factories'
 import { ProductImgFactory } from 'Database/factories'
-import { ServiceOrderFactory } from 'Database/factories'
 
 test.group('Product imgs', () => {
   test('index', async ({ }) => {
@@ -45,7 +44,7 @@ test.group('Product imgs', () => {
       const imgs = await ProductImgFactory.create()
       const imgs1 = await ProductImgFactory.make()
       const response = await client
-        .put(`/create/${imgs.id}`)
+        .put(`/imgs_collection/${imgs.id}`)
         .json({ img_src1: imgs1.img_src1 })
         .loginAs(user)
   
