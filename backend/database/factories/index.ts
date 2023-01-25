@@ -14,6 +14,7 @@ import Schooling from 'App/Models/Schooling'
 import Notyfication from 'App/Models/Notyfication'
 import Product from 'App/Models/Product'
 import ServiceOrder from 'App/Models/ServiceOrder'
+import ServiceList from 'App/Models/ServiceList'
 
 export const UserFactory = Factory.define(User, ({ faker }) => {
   return {
@@ -107,6 +108,8 @@ export const CalendarEventFactory = Factory.define(CalendarEvent, ({ faker }) =>
   const rank = ['Danger', 'Info','Succes']
   return {
     company_id: faker.datatype.uuid(),
+    //date: faker.datatype.datetime(),
+    //time: faker.datatype.datetime(),
     rank: faker.helpers.arrayElement(rank),
     description: faker.commerce.productDescription(),
   }
@@ -165,5 +168,19 @@ export const ServiceOrderFactory = Factory.define(ServiceOrder, ({ faker }) => {
     status: faker.datatype.number(9),
     invoice: faker.datatype.boolean(),
     close: faker.datatype.boolean(),
+  }
+}).build()
+
+export const ServiceListFactory = Factory.define(ServiceList, ({ faker }) => {
+  return {
+    company_id: faker.datatype.uuid(),
+    s1: faker.commerce.productDescription(),
+    s2: faker.commerce.productDescription(),
+    s3: faker.commerce.productDescription(),
+    s4: faker.commerce.productDescription(),
+    s5: faker.commerce.productDescription(),
+    s6: faker.commerce.productDescription(),
+    s7: faker.commerce.productDescription(),
+    s8: faker.commerce.productDescription(),
   }
 }).build()
