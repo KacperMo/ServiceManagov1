@@ -10,13 +10,14 @@ export default class extends BaseSeeder {
   }
 
   public async run () {
+    //await IndustryFactory.createMany(5)
+    //await CompanyFactory.createMany(10)
+    //await ProductImgFactory.createMany(10)
+    //await UserFactory.createMany(10)
+
+    await this.runSeeder(await import('../Industry'))
     await this.runSeeder(await import('../Company'))
-    await IndustryFactory.createMany(5)
-    await this.runSeeder(await import('../Company'))
-    await CompanyFactory.createMany(10)
     await this.runSeeder(await import('../ProductImg'))
-    await ProductImgFactory.createMany(10)
     await this.runSeeder(await import('../User'))
-    await UserFactory.createMany(10)
   }
 }
