@@ -15,6 +15,7 @@ import Notyfication from 'App/Models/Notyfication'
 import Product from 'App/Models/Product'
 import ServiceOrder from 'App/Models/ServiceOrder'
 import ServiceList from 'App/Models/ServiceList'
+import Customer from 'App/Models/Customer'
 
 export const UserFactory = Factory.define(User, ({ faker }) => {
   return {
