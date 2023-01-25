@@ -5,13 +5,13 @@ import { ProductImgFactory } from 'Database/factories'
 test.group('Product imgs', () => {
   test('index', async ({ }) => {
     const user = await UserFactory.create()
-    const response = await client.get('/tickets').loginAs(user)
+    const response = await client.get('/imgs_collection').loginAs(user)
 
     response.assertStatus(200)
   })
   
   test('unauthorized_index', async ({ client }) => {
-    const response = await client.get('/tickets')
+    const response = await client.get('/imgs_collection')
 
     response.assertStatus(401)
   })

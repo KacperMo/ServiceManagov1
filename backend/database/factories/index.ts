@@ -66,7 +66,7 @@ export const AffiliationFactory = Factory.define(Affiliation, ({ faker }) => {
 export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
   return {
     company_name: faker.company.name(),
-    nip: faker.lorem.text(),
+    nip: faker.phone.number('###-###-##-##'),
     api: faker.internet.url(),
     api_key: faker.internet.password(20),
   }
@@ -182,5 +182,24 @@ export const ServiceListFactory = Factory.define(ServiceList, ({ faker }) => {
     s6: faker.commerce.productDescription(),
     s7: faker.commerce.productDescription(),
     s8: faker.commerce.productDescription(),
+  }
+}).build()
+
+export const CustomerFactory = Factory.define(Customer, ({ faker }) => {
+  return {
+    company_id: faker.datatype.uuid(),
+    name: faker.name.firstName(),
+    surname: faker.name.lastName(),
+    phone_number: faker.phone.number('###-###-###'),
+    email: faker.internet.exampleEmail(),
+    rating: faker.datatype.number(10),
+    street: faker.address.street(),
+    state: faker.address.state(),
+    zip_code: faker.address.zipCode('##-###'),
+    city:faker.address.cityName(),
+    house_number: faker.address.buildingNumber(),
+    apartment_number: faker.address.buildingNumber(),
+    nip: faker.phone.number('###-###-##-##'),
+    company_name:faker.company.name(),
   }
 }).build()
