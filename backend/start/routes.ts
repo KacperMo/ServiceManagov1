@@ -28,7 +28,7 @@ Route.get("/", async () => {
 Route.resource("users", "User/UsersController").apiOnly();
 Route.resource("profile", "User/UserProfilesController").apiOnly();
 Route.resource("companies", "Company/CompaniesController").apiOnly();
-Route.resource("ticket", "Customer/ServiceOrdersConrtoller").apiOnly();
+Route.resource("tickets", "Customer/ServiceOrdersConrtoller").apiOnly();
 // }).middleware(['auth'])
 
 Route.post("login", "AuthController.login");
