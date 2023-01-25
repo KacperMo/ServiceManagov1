@@ -24,10 +24,10 @@ export const UserFactory = Factory.define(User, ({ faker }) => {
 }).build()
 
 export const CompanyFactory = Factory.define(Company, ({ faker }) => {
-  return {
-    name: faker.company.name(),
+  return {    
     industry_id: faker.datatype.number(),
     owner_id: faker.datatype.number(),
+    name: faker.company.name(),
     city: faker.address.cityName(),
     phone_number: faker.phone.number('###-###-###'),
     nip: faker.phone.number('###-###-##-##'),
@@ -56,7 +56,9 @@ export const UserProfileFactory = Factory.define(UserProfile, ({ faker }) => {
 
 export const AffiliationFactory = Factory.define(Affiliation, ({ faker }) => {
   return {
+    user_id: faker.datatype.number(5),
     percentage_value: faker.datatype.number(20),
+    afiliated_company_id: faker.datatype.number(20),
   }
 }).build()
 
@@ -70,9 +72,10 @@ export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
 }).build()
 
 export const IndustryFactory = Factory.define(Industry, ({ faker }) => {
-  const industries = ['GSM', 'RTV', 'STIHL', 'AUTOMOTIVE', 'GASTRONOMY']
+  //const industries = ['GSM', 'RTV', 'STIHL', 'AUTOMOTIVE', 'GASTRONOMY']
   return {
-    name: faker.helpers.arrayElement(industries),
+    //name: faker.helpers.arrayElement(industries),
+    name: faker.commerce.department(),
   }
 }).build()
 
