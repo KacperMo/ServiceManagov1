@@ -2,6 +2,7 @@ import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import { UserFactory } from 'Database/factories'
 import { CompanyFactory } from 'Database/factories'
 import { ProductImgFactory } from 'Database/factories'
+import { IndustryFactory } from 'Database/factories'
 
 export default class extends BaseSeeder {
   private async runSeeder(Seeder: { default: typeof BaseSeeder }) {
@@ -9,6 +10,8 @@ export default class extends BaseSeeder {
   }
 
   public async run () {
+    //await this.runSeeder(await import('../Company'))
+    await IndustryFactory.createMany(5)
     //await this.runSeeder(await import('../Company'))
     await CompanyFactory.createMany(10)
     //await this.runSeeder(await import('../ProductImg'))
