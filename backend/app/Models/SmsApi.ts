@@ -3,7 +3,7 @@ import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class SmsApi extends BaseModel {
   @column({ isPrimary: true })
-  public company_id: number
+  public company_id: string
 
   @column()
   public api_key: string

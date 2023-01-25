@@ -5,7 +5,10 @@ export default class extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('company_id')
+      table
+        .string('company_id')
+        .references('companies.id')
+        .onDelete('CASCADE')
       table.string('api_key').notNullable().unique()
       table.integer('avaliable_sms',10).nullable()
       table.datetime('created_at', { useTz: true })

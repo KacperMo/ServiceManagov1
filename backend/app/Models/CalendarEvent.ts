@@ -15,7 +15,7 @@ export default class CalendarEvent extends BaseModel {
   public description: string
 
   @column()
-  public date: DateTime
+  public event_date: DateTime
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

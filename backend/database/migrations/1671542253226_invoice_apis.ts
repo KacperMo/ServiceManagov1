@@ -5,7 +5,10 @@ export default class extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('company_id')
+      table
+        .string('company_id')
+        .references('companies.id')
+        .onDelete('CASCADE')
       table.string('host_name').nullable()
       table.string('tocken').nullable()
       table.datetime('created_at', { useTz: true })
