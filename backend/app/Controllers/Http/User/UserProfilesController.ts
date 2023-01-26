@@ -38,9 +38,18 @@ export default class UserProfilesController {
     return profile
   }
 
-  public async edit ({}: HttpContextContract) {}
+  public async update ({ request, params }: HttpContextContract) {
+    const profile = await UserProfile.findOrFail(params.id)
+    const email = request.input('email')
+    await user.merge({ email: email }).save()
 
-  public async update ({}: HttpContextContract) {}
+    return profile
+  }
 
-  public async destroy ({}: HttpContextContract) {}
+  public async destroy ({ response, params }: HttpContextContract) {
+    const profile = await UserProfile.findOrFail(params.id)
+    await profile.delete()
+
+    return response.noContent()
+  }
 }
