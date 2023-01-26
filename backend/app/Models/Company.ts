@@ -24,22 +24,37 @@ export default class Company extends BaseModel {
   public name: string
 
   @column()
+  public nip: string
+
+  @column()
+  public regon: string
+
+  @column()
+  public province: string
+
+  @column()
+  public district: string
+
+  @column()
+  public community: string
+
+  @column()
   public city: string
 
   @column()
-  public street: string
-
-  @column()
-  public zip_code: string
-
-  @column()
-  public house_number: string
+  public property_number: string
 
   @column()
   public apartment_number: string
 
   @column()
-  public nip: string
+  public zip_code: string
+
+  @column()
+  public street: string
+
+  @column()
+  public post_city: string
 
   @column()
   public phone_number: string

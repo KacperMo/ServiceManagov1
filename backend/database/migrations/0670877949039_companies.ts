@@ -11,12 +11,17 @@ export default class extends BaseSchema {
         .references('industries.id')
       table.integer('owner_id',10).notNullable()
       table.string('name').notNullable().index()
-      table.string('city',30).nullable()
-      table.string('street',30).nullable()
-      table.string('zip_code',40).nullable()
-      table.string('house_number',10).nullable()
-      table.string('apartment_number',40).nullable()
       table.string('nip',13).notNullable().index()
+      table.string('regon',10).nullable()
+      table.string('province',30).nullable() //województwo
+      table.string('district',30).nullable() //rejon
+      table.string('community',30).nullable() //gmina
+      table.string('city',30).nullable()
+      table.string('property_number',10).nullable()
+      table.string('apartment_number',40).nullable()
+      table.string('zip_code',40).nullable()
+      table.string('street',30).nullable()
+      table.string('post_city',30).nullable() // Poczta miasto
       table.string('phone_number',13).notNullable()
       table.string('email',50).nullable()
       table.string('logo',250).nullable()
