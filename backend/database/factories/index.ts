@@ -19,7 +19,7 @@ import Customer from 'App/Models/Customer'
 
 export const UserFactory = Factory.define(User, ({ faker }) => {
   return {
-    // username: faker.internet.userName(),
+    id: faker.datatype.uuid(),
     email: faker.internet.email(),
     password: faker.internet.password(),
   }
@@ -27,6 +27,7 @@ export const UserFactory = Factory.define(User, ({ faker }) => {
 
 export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   return {    
+    id: faker.datatype.uuid(),
     industry_id: faker.datatype.number(),
     owner_id: faker.datatype.number(),
     name: faker.company.name(),
