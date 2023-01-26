@@ -8,8 +8,8 @@ export default class AuthController {
     const password = request.input("password");
     try {
       const token = await auth.use("api").attempt(email, password);
-
-      return token;
+      const user = token.user;
+      return { token, user };
     } catch {
       return response.unauthorized("Invalid credentials");
     }
@@ -22,14 +22,16 @@ export default class AuthController {
     };
   }
 
-  public async register({ request }: HttpContextContract) {
+  public async register({ auth, request, response }: HttpContextContract) {
     const payload = await request.validate(RegisterValidator);
-    console.log(payload);
-    // const email = request.input("email");
-    // const password = request.input("password");
-    // const user = User.create({ email, password });
-    // const hashedPassword = await Hash.make(password)
-    // const token = await auth.use('api').attempt(email, hashedPassword)
-    // return user;
+    const user = await User.create({ email: payload.email, password: payload.password });
+    let token;
+    try {
+      token = await auth.use('api').attempt(payload.email, payload.password)      
+    } catch(e) {      
+      return response.unauthorized('Invalid credentials')
+    }
+    
+    return { token, user };
   }
 }
