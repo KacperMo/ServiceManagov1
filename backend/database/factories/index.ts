@@ -32,8 +32,9 @@ export const IndustryFactory = Factory.define(Industry, ({ faker }) => {
     name: faker.commerce.department(),
   };
 })
-  .relation("companies", () => CompanyFactory)
   .relation("categories", () => CategoryFactory)
+  .relation("suppliers", () => SupplierFactory)
+  .relation("companies", () => CompanyFactory)
   .build();
 
 export const CategoryFactory = Factory.define(Category, ({ faker }) => {
@@ -47,6 +48,18 @@ export const CategoryFactory = Factory.define(Category, ({ faker }) => {
   return {
     // industry_id: faker.datatype.number(),
     name: faker.helpers.arrayElement(categories),
+  };
+})
+  .relation("industry", () => IndustryFactory)
+  .build();
+
+export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
+  return {
+    id: faker.datatype.uuid(),
+    company_name: faker.company.name(),
+    nip: faker.phone.number("###-###-##-##"),
+    api: faker.internet.url(),
+    api_key: faker.internet.password(20),
   };
 })
   .relation("industry", () => IndustryFactory)
@@ -91,15 +104,6 @@ export const AffiliationFactory = Factory.define(Affiliation, ({ faker }) => {
     user_id: faker.datatype.number(5),
     percentage_value: faker.datatype.number(20),
     afiliated_company_id: faker.datatype.number(20),
-  };
-}).build();
-
-export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
-  return {
-    company_name: faker.company.name(),
-    nip: faker.phone.number("###-###-##-##"),
-    api: faker.internet.url(),
-    api_key: faker.internet.password(20),
   };
 }).build();
 

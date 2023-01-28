@@ -1,28 +1,32 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from "luxon";
+import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm";
+import Industry from "./Industry";
 
 export default class Supplier extends BaseModel {
   @column({ isPrimary: true })
-  public id: string
+  public id: string;
 
   @column()
-  public industry_id: number
+  public industryId: number;
 
   @column()
-  public company_name: string
+  public company_name: string;
 
   @column()
-  public nip: string
+  public nip: string;
 
   @column()
-  public api: string
+  public api: string;
 
   @column()
-  public api_key: string
+  public api_key: string;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public updatedAt: DateTime;
+
+  @belongsTo(() => Industry)
+  public industry: BelongsTo<typeof Industry>;
 }

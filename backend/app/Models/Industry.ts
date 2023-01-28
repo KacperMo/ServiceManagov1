@@ -21,7 +21,7 @@ export default class Industry extends BaseModel {
   public categories: HasMany<typeof Category>;
 
   @hasMany(() => Supplier)
-  public supplier: HasMany<typeof Supplier>;
+  public suppliers: HasMany<typeof Supplier>;
 
   @hasMany(() => Company)
   public companies: HasMany<typeof Company>;
