@@ -21,4 +21,12 @@ test.group("Industry", () => {
 
     assert.isArray(industry.companies);
   });
+
+  test("has many categories", async ({ assert }) => {
+    const industry = await IndustryFactory.with("companies", 2)
+      .with("categories", 2)
+      .create();
+
+    assert.isArray(industry.categories);
+  });
 });

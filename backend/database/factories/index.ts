@@ -33,6 +33,23 @@ export const IndustryFactory = Factory.define(Industry, ({ faker }) => {
   };
 })
   .relation("companies", () => CompanyFactory)
+  .relation("categories", () => CategoryFactory)
+  .build();
+
+export const CategoryFactory = Factory.define(Category, ({ faker }) => {
+  const categories = [
+    "Repair",
+    "RMA",
+    "Screen replacement",
+    "Cleaning",
+    "Program instalations",
+  ];
+  return {
+    // industry_id: faker.datatype.number(),
+    name: faker.helpers.arrayElement(categories),
+  };
+})
+  .relation("industry", () => IndustryFactory)
   .build();
 
 export const CompanyFactory = Factory.define(Company, ({ faker }) => {
@@ -83,20 +100,6 @@ export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
     nip: faker.phone.number("###-###-##-##"),
     api: faker.internet.url(),
     api_key: faker.internet.password(20),
-  };
-}).build();
-
-export const CategoryFactory = Factory.define(Category, ({ faker }) => {
-  const categories = [
-    "Repair",
-    "RMA",
-    "Screen replacement",
-    "Cleaning",
-    "Program instalations",
-  ];
-  return {
-    industry_id: faker.datatype.number(),
-    name: faker.helpers.arrayElement(categories),
   };
 }).build();
 

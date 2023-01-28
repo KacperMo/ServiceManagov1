@@ -1,36 +1,43 @@
-import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+import BaseSchema from "@ioc:Adonis/Lucid/Schema";
 
 export default class extends BaseSchema {
-  protected tableName = 'companies'
+  protected tableName = "companies";
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.uuid('id').primary()
-      table.integer('industry_id')
+      table.uuid("id").primary();
+      table
+        .integer("industry_id")
         .unsigned()
-        .references('industries.id')
-      table.integer('owner_id',10).notNullable()
-      table.string('name').notNullable().index()
-      table.string('nip',13).notNullable().index()
-      table.string('regon',10).nullable()
-      table.string('province',30).nullable() //województwo
-      table.string('district',30).nullable() //rejon
-      table.string('community',30).nullable() //gmina
-      table.string('city',30).nullable()
-      table.string('property_number',10).nullable()
-      table.string('apartment_number',40).nullable()
-      table.string('zip_code',40).nullable()
-      table.string('street',30).nullable()
-      table.string('post_city',30).nullable() // Poczta miasto
-      table.string('phone_number',13).notNullable()
-      table.string('email',50).nullable()
-      table.string('logo',250).nullable()
-      table.datetime('created_at', { useTz: true })
-      table.datetime('updated_at', { useTz: true })
-    })
+        .references("industries.id")
+        .onDelete("CASCADE");
+      table
+        .integer("category_id")
+        .unsigned()
+        .references("categories.id")
+        .onDelete("CASCADE"); // delete company when category is deleted
+      table.integer("owner_id", 10).notNullable();
+      table.string("name").notNullable().index();
+      table.string("nip", 13).notNullable().index();
+      table.string("regon", 10).nullable();
+      table.string("province", 30).nullable(); //województwo
+      table.string("district", 30).nullable(); //rejon
+      table.string("community", 30).nullable(); //gmina
+      table.string("city", 30).nullable();
+      table.string("property_number", 10).nullable();
+      table.string("apartment_number", 40).nullable();
+      table.string("zip_code", 40).nullable();
+      table.string("street", 30).nullable();
+      table.string("post_city", 30).nullable(); // Poczta miasto
+      table.string("phone_number", 13).notNullable();
+      table.string("email", 50).nullable();
+      table.string("logo", 250).nullable();
+      table.datetime("created_at", { useTz: true });
+      table.datetime("updated_at", { useTz: true });
+    });
   }
 
-  public async down () {
-    this.schema.dropTable(this.tableName)
+  public async down() {
+    this.schema.dropTable(this.tableName);
   }
 }
