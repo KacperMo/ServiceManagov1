@@ -24,8 +24,12 @@ export default class RegisterValidator {
    *    ```
    */
   public schema = schema.create({
-    email: schema.string({}, [rules.email()]),
-    password: schema.string(),
+    email: schema.string({}, [
+      rules.email(),
+      rules.unique({ table: "users", column: "email" }),
+      rules.maxLength(255),
+    ]),
+    password: schema.string({}, [rules.maxLength(180)]),
   });
 
   /**
