@@ -1,103 +1,116 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, HasMany, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
-import BusinessCard from './BusinessCard'
-import Payment from './Payment'
-import CalendarEvent from './CalendarEvent'
-import Notyfication from './Notyfication'
-import User from './User'
-import Product from './Product'
-import ZplLabel from './ZplLabel'
-import SmsApi from './SmsApi'
-import ServiceList from './ServiceList'
+import { DateTime } from "luxon";
+import {
+  BaseModel,
+  column,
+  belongsTo,
+  BelongsTo,
+  hasMany,
+  HasMany,
+  HasOne,
+  hasOne,
+} from "@ioc:Adonis/Lucid/Orm";
+import BusinessCard from "./BusinessCard";
+import Payment from "./Payment";
+import CalendarEvent from "./CalendarEvent";
+import Notyfication from "./Notyfication";
+import User from "./User";
+import Product from "./Product";
+import ZplLabel from "./ZplLabel";
+import SmsApi from "./SmsApi";
+import ServiceList from "./ServiceList";
+import Industry from "./Industry";
 
 export default class Company extends BaseModel {
   @column({ isPrimary: true })
-  public id: string
+  public id: string;
 
   @column()
-  public industry_id: number
+  public industryId: number;
 
   @column()
-  public owner_id: number
+  public owner_id: number;
 
   @column()
-  public name: string
+  public name: string;
 
   @column()
-  public nip: string
+  public nip: string;
 
   @column()
-  public regon: string
+  public regon: string;
 
   @column()
-  public province: string
+  public province: string;
 
   @column()
-  public district: string
+  public district: string;
 
   @column()
-  public community: string
+  public community: string;
 
   @column()
-  public city: string
+  public city: string;
 
   @column()
-  public property_number: string
+  public property_number: string;
 
   @column()
-  public apartment_number: string
+  public apartment_number: string;
 
   @column()
-  public zip_code: string
+  public zip_code: string;
 
   @column()
-  public street: string
+  public street: string;
 
   @column()
-  public post_city: string
+  public post_city: string;
 
   @column()
-  public phone_number: string
+  public phone_number: string;
 
   @column()
-  public email: string
+  public email: string;
 
   @column()
-  public logo: string
+  public logo: string;
 
   @column()
-  public rememberMeToken: string
+  public rememberMeToken: string;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public updatedAt: DateTime;
+
+  @belongsTo(() => Industry)
+  public industry: BelongsTo<typeof Industry>;
 
   @hasMany(() => BusinessCard)
-  public businessCard: HasMany<typeof BusinessCard>
+  public businessCard: HasMany<typeof BusinessCard>;
 
   @hasMany(() => Payment)
-  public payment: HasMany<typeof Payment>
+  public payment: HasMany<typeof Payment>;
 
   @hasMany(() => CalendarEvent)
-  public calendarEvent: HasMany<typeof CalendarEvent>
+  public calendarEvent: HasMany<typeof CalendarEvent>;
 
   @hasMany(() => Notyfication)
-  public notyfication: HasMany<typeof Notyfication>
+  public notyfication: HasMany<typeof Notyfication>;
 
   @hasMany(() => User)
-  public user: HasMany<typeof User>
+  public user: HasMany<typeof User>;
 
   @hasMany(() => Product)
-  public product: HasMany<typeof Product>
+  public product: HasMany<typeof Product>;
 
   @hasMany(() => ZplLabel)
-  public zplLabel: HasMany<typeof ZplLabel>
+  public zplLabel: HasMany<typeof ZplLabel>;
 
   @hasOne(() => SmsApi)
-  public smsapi: HasOne<typeof SmsApi>
+  public smsapi: HasOne<typeof SmsApi>;
 
   @hasOne(() => ServiceList)
-  public serviceList: HasOne<typeof ServiceList>
+  public serviceList: HasOne<typeof ServiceList>;
 }

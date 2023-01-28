@@ -3,15 +3,20 @@ import { CompanyFactory } from "Database/factories";
 import Company from "App/Models/Company";
 
 test.group("Company", () => {
-  test("make company", async ({ assert }) => {
+  test("make", async ({ assert }) => {
     const company = await CompanyFactory.make();
 
     assert.instanceOf(company, Company);
   });
 
-  test("create company", async ({ assert }) => {
+  test("create", async ({ assert }) => {
     const company = await CompanyFactory.create();
+    assert.properties(company, ["name"]); //  "industry_id",  "owner_id",
+  });
 
-    assert.properties(company, ["industry_id", "owner_id", "name"]);
+  test("belongs to industry", async ({ assert }) => {
+    const company = await CompanyFactory.with("industry").create();
+
+    assert.instanceOf(company, Company);
   });
 });

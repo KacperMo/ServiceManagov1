@@ -1,140 +1,153 @@
-import Factory from '@ioc:Adonis/Lucid/Factory'
-import User from 'App/Models/User'
-import Company from 'App/Models/Company'
-import ProductImg from 'App/Models/ProductImg'
-import UserProfile from 'App/Models/UserProfile'
-import Affiliation from 'App/Models/Affiliation'
-import Supplier from 'App/Models/Supplier'
-import Industry from 'App/Models/Industry'
-import Category from 'App/Models/Category'
-import BusinessCard from 'App/Models/BusinessCard'
-import Payment from 'App/Models/Payment'
-import CalendarEvent from 'App/Models/CalendarEvent'
-import Schooling from 'App/Models/Schooling'
-import Notyfication from 'App/Models/Notyfication'
-import Product from 'App/Models/Product'
-import ServiceOrder from 'App/Models/ServiceOrder'
-import ServiceList from 'App/Models/ServiceList'
-import Customer from 'App/Models/Customer'
+import Factory from "@ioc:Adonis/Lucid/Factory";
+import User from "App/Models/User";
+import Company from "App/Models/Company";
+import ProductImg from "App/Models/ProductImg";
+import UserProfile from "App/Models/UserProfile";
+import Affiliation from "App/Models/Affiliation";
+import Supplier from "App/Models/Supplier";
+import Industry from "App/Models/Industry";
+import Category from "App/Models/Category";
+import BusinessCard from "App/Models/BusinessCard";
+import Payment from "App/Models/Payment";
+import CalendarEvent from "App/Models/CalendarEvent";
+import Schooling from "App/Models/Schooling";
+import Notyfication from "App/Models/Notyfication";
+import Product from "App/Models/Product";
+import ServiceOrder from "App/Models/ServiceOrder";
+import ServiceList from "App/Models/ServiceList";
+import Customer from "App/Models/Customer";
 
 export const UserFactory = Factory.define(User, ({ faker }) => {
   return {
     id: faker.datatype.uuid(),
     email: faker.internet.email(),
     password: faker.internet.password(),
-  }
-}).build()
-
-export const CompanyFactory = Factory.define(Company, ({ faker }) => {
-  return {    
-    id: faker.datatype.uuid(),
-    industry_id: faker.datatype.number(),
-    owner_id: faker.datatype.number(),
-    name: faker.company.name(),
-    city: faker.address.cityName(),
-    phone_number: faker.phone.number('###-###-###'),
-    nip: faker.phone.number('###-###-##-##'),
-  }
-}).build()
-
-export const ProductImgFactory = Factory.define(ProductImg, ({ faker }) => {
-  return {
-    url_base: faker.image.imageUrl(),
-    img_src1: faker.system.commonFileName('jpg'),
-    img_src2: faker.system.commonFileName('jpg'),
-    img_src3: faker.system.commonFileName('jpg'),
-    img_src4: faker.system.commonFileName('jpg'),
-  }
-}).build()
-
-export const UserProfileFactory = Factory.define(UserProfile, ({ faker }) => {
-  return {
-    position: faker.name.jobDescriptor(),
-    name: faker.name.firstName(),
-    surname: faker.name.lastName(),
-    phone: faker.phone.number('###-###-###'),
-    email: faker.internet.exampleEmail(),
-  }
-}).build()
-
-export const AffiliationFactory = Factory.define(Affiliation, ({ faker }) => {
-  return {
-    user_id: faker.datatype.number(5),
-    percentage_value: faker.datatype.number(20),
-    afiliated_company_id: faker.datatype.number(20),
-  }
-}).build()
-
-export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
-  return {
-    company_name: faker.company.name(),
-    nip: faker.phone.number('###-###-##-##'),
-    api: faker.internet.url(),
-    api_key: faker.internet.password(20),
-  }
-}).build()
+  };
+}).build();
 
 export const IndustryFactory = Factory.define(Industry, ({ faker }) => {
   //const industries = ['GSM', 'RTV', 'STIHL', 'AUTOMOTIVE', 'GASTRONOMY']
   return {
     //name: faker.helpers.arrayElement(industries),
     name: faker.commerce.department(),
-  }
-}).build()
+  };
+})
+  .relation("companies", () => CompanyFactory)
+  .build();
+
+export const CompanyFactory = Factory.define(Company, ({ faker }) => {
+  return {
+    id: faker.datatype.uuid(),
+    // industry_id: IndustryFactory.create(), //faker.datatype.number(),
+    owner_id: faker.datatype.number(),
+    name: faker.company.name(),
+    city: faker.address.cityName(),
+    phone_number: faker.phone.number("###-###-###"),
+    nip: faker.phone.number("###-###-##-##"),
+  };
+})
+  .relation("industry", () => IndustryFactory)
+  .build();
+
+export const ProductImgFactory = Factory.define(ProductImg, ({ faker }) => {
+  return {
+    url_base: faker.image.imageUrl(),
+    img_src1: faker.system.commonFileName("jpg"),
+    img_src2: faker.system.commonFileName("jpg"),
+    img_src3: faker.system.commonFileName("jpg"),
+    img_src4: faker.system.commonFileName("jpg"),
+  };
+}).build();
+
+export const UserProfileFactory = Factory.define(UserProfile, ({ faker }) => {
+  return {
+    position: faker.name.jobDescriptor(),
+    name: faker.name.firstName(),
+    surname: faker.name.lastName(),
+    phone: faker.phone.number("###-###-###"),
+    email: faker.internet.exampleEmail(),
+  };
+}).build();
+
+export const AffiliationFactory = Factory.define(Affiliation, ({ faker }) => {
+  return {
+    user_id: faker.datatype.number(5),
+    percentage_value: faker.datatype.number(20),
+    afiliated_company_id: faker.datatype.number(20),
+  };
+}).build();
+
+export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
+  return {
+    company_name: faker.company.name(),
+    nip: faker.phone.number("###-###-##-##"),
+    api: faker.internet.url(),
+    api_key: faker.internet.password(20),
+  };
+}).build();
 
 export const CategoryFactory = Factory.define(Category, ({ faker }) => {
-  const categories = ['Repair', 'RMA', 'Screen replacement', 'Cleaning', 'Program instalations']
+  const categories = [
+    "Repair",
+    "RMA",
+    "Screen replacement",
+    "Cleaning",
+    "Program instalations",
+  ];
   return {
     industry_id: faker.datatype.number(),
     name: faker.helpers.arrayElement(categories),
-  }
-}).build()
+  };
+}).build();
 
 export const BusinessCardFactory = Factory.define(BusinessCard, ({ faker }) => {
   return {
     description: faker.commerce.productDescription(),
     card_owner_id: faker.datatype.uuid(),
     afiliated_company_id: faker.datatype.uuid(),
-  }
-}).build()
+  };
+}).build();
 
 export const PaymentFactory = Factory.define(Payment, ({ faker }) => {
   return {
     company_id: faker.datatype.uuid(),
     ammount: faker.datatype.number(100),
     comfirmation: faker.datatype.boolean(),
-  }
-}).build()
+  };
+}).build();
 
-export const CalendarEventFactory = Factory.define(CalendarEvent, ({ faker }) => {
-  const rank = ['Danger', 'Info','Succes']
-  return {
-    company_id: faker.datatype.uuid(),
-    //date: faker.datatype.datetime(),
-    //time: faker.datatype.datetime(),
-    rank: faker.helpers.arrayElement(rank),
-    description: faker.commerce.productDescription(),
+export const CalendarEventFactory = Factory.define(
+  CalendarEvent,
+  ({ faker }) => {
+    const rank = ["Danger", "Info", "Succes"];
+    return {
+      company_id: faker.datatype.uuid(),
+      //date: faker.datatype.datetime(),
+      //time: faker.datatype.datetime(),
+      rank: faker.helpers.arrayElement(rank),
+      description: faker.commerce.productDescription(),
+    };
   }
-}).build()
+).build();
 
 export const SchoolingFactory = Factory.define(Schooling, ({ faker }) => {
   return {
     name: faker.commerce.productName(),
     title: faker.commerce.productName(),
-    lead: 'Adam Nowak',
+    lead: "Adam Nowak",
     url: faker.internet.url(),
-    platform: 'YouTube',
-  }
-}).build()
+    platform: "YouTube",
+  };
+}).build();
 
 export const NotyficationFactory = Factory.define(Notyfication, ({ faker }) => {
-  const rank = ['Danger', 'Info','Succes']
+  const rank = ["Danger", "Info", "Succes"];
   return {
     company_id: faker.datatype.uuid(),
     rank: faker.helpers.arrayElement(rank),
     description: faker.commerce.productDescription(),
-  }
-}).build()
+  };
+}).build();
 
 export const ProductFactory = Factory.define(Product, ({ faker }) => {
   return {
@@ -151,8 +164,8 @@ export const ProductFactory = Factory.define(Product, ({ faker }) => {
     cost_of_purchase: faker.datatype.number(50),
     is_public: faker.datatype.boolean(),
     invoice: faker.datatype.boolean(),
-  }
-}).build()
+  };
+}).build();
 
 export const ServiceOrderFactory = Factory.define(ServiceOrder, ({ faker }) => {
   return {
@@ -170,8 +183,8 @@ export const ServiceOrderFactory = Factory.define(ServiceOrder, ({ faker }) => {
     status: faker.datatype.number(9),
     invoice: faker.datatype.boolean(),
     close: faker.datatype.boolean(),
-  }
-}).build()
+  };
+}).build();
 
 export const ServiceListFactory = Factory.define(ServiceList, ({ faker }) => {
   return {
@@ -184,24 +197,24 @@ export const ServiceListFactory = Factory.define(ServiceList, ({ faker }) => {
     s6: faker.commerce.productDescription(),
     s7: faker.commerce.productDescription(),
     s8: faker.commerce.productDescription(),
-  }
-}).build()
+  };
+}).build();
 
 export const CustomerFactory = Factory.define(Customer, ({ faker }) => {
   return {
     company_id: faker.datatype.uuid(),
     name: faker.name.firstName(),
     surname: faker.name.lastName(),
-    phone_number: faker.phone.number('###-###-###'),
+    phone_number: faker.phone.number("###-###-###"),
     email: faker.internet.exampleEmail(),
     rating: faker.datatype.number(10),
     street: faker.address.street(),
     state: faker.address.state(),
-    zip_code: faker.address.zipCode('##-###'),
-    city:faker.address.cityName(),
+    zip_code: faker.address.zipCode("##-###"),
+    city: faker.address.cityName(),
     house_number: faker.address.buildingNumber(),
     apartment_number: faker.address.buildingNumber(),
-    nip: faker.phone.number('###-###-##-##'),
-    company_name:faker.company.name(),
-  }
-}).build()
+    nip: faker.phone.number("###-###-##-##"),
+    company_name: faker.company.name(),
+  };
+}).build();
