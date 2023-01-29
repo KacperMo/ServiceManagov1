@@ -34,6 +34,12 @@ test.group("Company", () => {
     assert.isArray(company.users);
   });
 
+  test("has many products", async ({ assert }) => {
+    const company = await CompanyFactory.with("products").create();
+
+    assert.isArray(company.products);
+  });
+
   test("has many business cards", async ({ assert }) => {
     const company = await CompanyFactory.with("businessCards").create();
 

@@ -92,7 +92,30 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   .relation("industry", () => IndustryFactory)
   .relation("category", () => CategoryFactory)
   .relation("users", () => UserFactory)
+  .relation("products", () => UserFactory)
   .relation("businessCards", () => UserFactory)
+  .build();
+
+export const ProductFactory = Factory.define(Product, ({ faker }) => {
+  return {
+    id: faker.datatype.uuid(),
+    // company_id: faker.datatype.uuid(),
+    // brand: faker.company.bsNoun(),
+    model: faker.vehicle.model(),
+    // symbol: faker.vehicle.vrm(),
+    // serial_or_imei: faker.vehicle.vin(),
+    name: faker.commerce.productName(),
+    description: faker.commerce.productDescription(),
+    // condition: faker.commerce.productName(),
+    quantity: faker.datatype.number(10),
+    price: faker.datatype.number(500),
+    cost_of_purchase: faker.datatype.number(50),
+    is_active: faker.datatype.boolean(),
+    // is_public: faker.datatype.boolean(),
+    // invoice: faker.datatype.boolean(),
+  };
+})
+  .relation("company", () => CompanyFactory)
   .build();
 
 export const ProductImgFactory = Factory.define(ProductImg, ({ faker }) => {
@@ -161,24 +184,6 @@ export const NotyficationFactory = Factory.define(Notyfication, ({ faker }) => {
     company_id: faker.datatype.uuid(),
     rank: faker.helpers.arrayElement(rank),
     description: faker.commerce.productDescription(),
-  };
-}).build();
-
-export const ProductFactory = Factory.define(Product, ({ faker }) => {
-  return {
-    company_id: faker.datatype.uuid(),
-    brand: faker.company.bsNoun(),
-    model: faker.vehicle.model(),
-    symbol: faker.vehicle.vrm(),
-    serial_or_imei: faker.vehicle.vin(),
-    title: faker.commerce.productName(),
-    condition: faker.commerce.productName(),
-    is_active: faker.datatype.boolean(),
-    quantity: faker.datatype.number(10),
-    price: faker.datatype.number(500),
-    cost_of_purchase: faker.datatype.number(50),
-    is_public: faker.datatype.boolean(),
-    invoice: faker.datatype.boolean(),
   };
 }).build();
 

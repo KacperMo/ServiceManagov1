@@ -97,6 +97,9 @@ export default class Company extends BaseModel {
   @hasMany(() => User)
   public users: HasMany<typeof User>;
 
+  @hasMany(() => Product)
+  public products: HasMany<typeof Product>;
+
   @hasMany(() => BusinessCard)
   public businessCards: HasMany<typeof BusinessCard>;
 
@@ -108,9 +111,6 @@ export default class Company extends BaseModel {
 
   @hasMany(() => Notyfication)
   public notyfication: HasMany<typeof Notyfication>;
-
-  @hasMany(() => Product)
-  public product: HasMany<typeof Product>;
 
   @hasMany(() => ZplLabel)
   public zplLabel: HasMany<typeof ZplLabel>;
