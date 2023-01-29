@@ -15,8 +15,13 @@ export default class extends BaseSchema {
         .integer("category_id")
         .unsigned()
         .references("categories.id")
-        .onDelete("CASCADE"); // delete company when category is deleted
-      table.integer("owner_id", 10).notNullable();
+        .onDelete("CASCADE");
+      // table
+      //   .integer("user_id")
+      //   .unsigned()
+      //   .references("users.id")
+      //   .onDelete("CASCADE");
+      // table.integer("owner_id", 10).notNullable();
       table.string("name").notNullable().index();
       table.string("nip", 13).notNullable().index();
       table.string("regon", 10).nullable();

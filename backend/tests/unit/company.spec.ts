@@ -27,4 +27,10 @@ test.group("Company", () => {
 
     assert.instanceOf(company.category, Category);
   });
+
+  test("has many users", async ({ assert }) => {
+    const company = await CompanyFactory.with("users").create();
+
+    assert.isArray(company.users);
+  });
 });

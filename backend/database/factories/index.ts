@@ -23,7 +23,9 @@ export const UserFactory = Factory.define(User, ({ faker }) => {
     email: faker.internet.email(),
     password: faker.internet.password(),
   };
-}).build();
+})
+  .relation("company", () => CompanyFactory)
+  .build();
 
 export const IndustryFactory = Factory.define(Industry, ({ faker }) => {
   //const industries = ['GSM', 'RTV', 'STIHL', 'AUTOMOTIVE', 'GASTRONOMY']
@@ -70,7 +72,7 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   return {
     id: faker.datatype.uuid(),
     // industry_id: IndustryFactory.create(), //faker.datatype.number(),
-    owner_id: faker.datatype.number(),
+    // owner_id: faker.datatype.number(),
     name: faker.company.name(),
     city: faker.address.cityName(),
     phone_number: faker.phone.number("###-###-###"),
@@ -79,6 +81,7 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
 })
   .relation("industry", () => IndustryFactory)
   .relation("category", () => CategoryFactory)
+  .relation("users", () => UserFactory)
   .build();
 
 export const ProductImgFactory = Factory.define(ProductImg, ({ faker }) => {
