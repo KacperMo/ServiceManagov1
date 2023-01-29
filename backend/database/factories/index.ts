@@ -7,7 +7,7 @@ import Affiliation from "App/Models/Affiliation";
 import Supplier from "App/Models/Company/Supplier";
 import Industry from "App/Models/Company/Industry";
 import Category from "App/Models/Company/Category";
-import BusinessCard from "App/Models/BusinessCard";
+import BusinessCard from "App/Models/Company/BusinessCard";
 import Payment from "App/Models/Payment";
 import CalendarEvent from "App/Models/CalendarEvent";
 import Schooling from "App/Models/Schooling";
@@ -68,6 +68,16 @@ export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
   .relation("industry", () => IndustryFactory)
   .build();
 
+export const BusinessCardFactory = Factory.define(BusinessCard, ({ faker }) => {
+  return {
+    description: faker.commerce.productDescription(),
+    // card_owner_id: faker.datatype.uuid(),
+    // afiliated_company_id: faker.datatype.uuid(),
+  };
+})
+  .relation("company", () => CompanyFactory)
+  .build();
+
 export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   return {
     id: faker.datatype.uuid(),
@@ -82,6 +92,7 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   .relation("industry", () => IndustryFactory)
   .relation("category", () => CategoryFactory)
   .relation("users", () => UserFactory)
+  .relation("businessCards", () => UserFactory)
   .build();
 
 export const ProductImgFactory = Factory.define(ProductImg, ({ faker }) => {
@@ -109,14 +120,6 @@ export const AffiliationFactory = Factory.define(Affiliation, ({ faker }) => {
     user_id: faker.datatype.number(5),
     percentage_value: faker.datatype.number(20),
     afiliated_company_id: faker.datatype.number(20),
-  };
-}).build();
-
-export const BusinessCardFactory = Factory.define(BusinessCard, ({ faker }) => {
-  return {
-    description: faker.commerce.productDescription(),
-    card_owner_id: faker.datatype.uuid(),
-    afiliated_company_id: faker.datatype.uuid(),
   };
 }).build();
 

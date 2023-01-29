@@ -9,7 +9,6 @@ import {
   HasOne,
   hasOne,
 } from "@ioc:Adonis/Lucid/Orm";
-import BusinessCard from "../BusinessCard";
 import Payment from "../Payment";
 import CalendarEvent from "../CalendarEvent";
 import Notyfication from "../Notyfication";
@@ -20,6 +19,7 @@ import SmsApi from "../SmsApi";
 import ServiceList from "../ServiceList";
 import Industry from "App/Models/Company/Industry";
 import Category from "App/Models/Company/Category";
+import BusinessCard from "App/Models/Company/BusinessCard";
 
 export default class Company extends BaseModel {
   @column({ isPrimary: true })
@@ -98,7 +98,7 @@ export default class Company extends BaseModel {
   public users: HasMany<typeof User>;
 
   @hasMany(() => BusinessCard)
-  public businessCard: HasMany<typeof BusinessCard>;
+  public businessCards: HasMany<typeof BusinessCard>;
 
   @hasMany(() => Payment)
   public payment: HasMany<typeof Payment>;
