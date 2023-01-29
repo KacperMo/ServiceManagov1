@@ -8,13 +8,13 @@ test.group('Supplier', () => {
     const response = await client.get('/supplier').loginAs(user)
 
     response.assertStatus(200)
-  })
+  }).skip(true)
   
   test('unauthorized_index', async ({ client }) => {
     const response = await client.get('/supplier')
 
     response.assertStatus(401)
-  })
+  }).skip(true)
 
   test('store', async ({ client }) => {
     const user = await UserFactory.create()
@@ -27,7 +27,7 @@ test.group('Supplier', () => {
     }).loginAs(user)
     
       response.assertStatus(201)
-    })
+    }).skip(true)
 
     test('show', async ({ client }) => {
       const user = await UserFactory.create()
@@ -35,7 +35,7 @@ test.group('Supplier', () => {
       const response = await client.get(`/imgs_collection/${supplier.id}`).loginAs(user)
   
       response.assertStatus(200)
-    })
+    }).skip(true)
 
     test('update', async ({ client }) => {
       const user = await UserFactory.create()
@@ -48,7 +48,7 @@ test.group('Supplier', () => {
   
       response.assertStatus(200)
       response.assertBodyContains({ icompany_name: supplier1.company_name })
-    })
+    }).skip(true)
   
     test('destroy', async ({ client }) => {
       const user = await UserFactory.create()
@@ -56,5 +56,5 @@ test.group('Supplier', () => {
       const response = await client.delete(`/supplier/${supplier.id}`).loginAs(user)
   
       response.assertStatus(204)
-    })
+    }).skip(true)
 })

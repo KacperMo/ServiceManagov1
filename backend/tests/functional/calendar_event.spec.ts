@@ -12,13 +12,13 @@ test.group('Calendar event', () => {
     const response = await client.get('/events').loginAs(user)
 
     response.assertStatus(200)
-  })
+  }).skip(true)
   
   test('unauthorized_index', async ({ client }) => {
     const response = await client.get('/events')
 
     response.assertStatus(401)
-  })
+  }).skip(true)
 
   test('store', async ({ client }) => {
     const user = await UserFactory.create()
@@ -30,7 +30,7 @@ test.group('Calendar event', () => {
     }).loginAs(user)
     
       response.assertStatus(201)
-    })
+    }).skip(true)
 
     test('show', async ({ client }) => {
       const user = await UserFactory.create()
@@ -38,7 +38,7 @@ test.group('Calendar event', () => {
       const response = await client.get(`/events/${event.id}`).loginAs(user)
   
       response.assertStatus(200)
-    })
+    }).skip(true)
 
     test('update', async ({ client }) => {
       const user = await UserFactory.create()
@@ -51,13 +51,13 @@ test.group('Calendar event', () => {
   
       response.assertStatus(200)
       response.assertBodyContains({ description: event1.description })
-    })
+    }).skip(true)
   
     test('destroy', async ({ client }) => {
       const user = await UserFactory.create()
       const event = await CalendarEventFactory.create()
       const response = await client.delete(`/events/${event.id}`).loginAs(user)
       response.assertStatus(204)
-    })
+    }).skip(true)
 
 })

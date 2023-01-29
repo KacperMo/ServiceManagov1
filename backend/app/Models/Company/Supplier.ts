@@ -7,7 +7,7 @@ export default class Supplier extends BaseModel {
   public id: number;
 
   @column()
-  public industry_id: number;
+  public industryId: number;
 
   @column()
   public name: string;
