@@ -17,6 +17,7 @@ export default class extends BaseSeeder {
 
     await this.runSeeder(await import("../Industry"));
     await this.runSeeder(await import("../Company"));
+    await this.runSeeder(await import("../BusinessCard"));
     await this.runSeeder(await import("../ProductImg"));
     await this.runSeeder(await import("../User"));
   }
