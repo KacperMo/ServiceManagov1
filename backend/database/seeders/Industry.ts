@@ -1,30 +1,30 @@
-import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import Industry from 'App/Models/Industry'
+import BaseSeeder from "@ioc:Adonis/Lucid/Seeder";
+import Industry from "App/Models/Company/Industry";
 
 export default class extends BaseSeeder {
-  public async run () {
+  public async run() {
     await Industry.createMany([
       {
-        name: 'GSM',
+        name: "GSM",
       },
       {
-        name: 'IT',
+        name: "IT",
       },
       {
-        name: 'STIHL',
+        name: "STIHL",
       },
       {
-        name: 'RTV',
+        name: "RTV",
       },
       {
-        name: 'AGD',
+        name: "AGD",
       },
       {
-        name: 'BICYCLE',
+        name: "BICYCLE",
       },
       {
-        name: 'AUTOMOTIV',
+        name: "AUTOMOTIV",
       },
-    ])
+    ]);
   }
 }

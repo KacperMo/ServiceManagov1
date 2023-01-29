@@ -1,6 +1,6 @@
 import { test } from "@japa/runner";
 import { UserFactory } from "Database/factories";
-import Company from "App/Models/Company";
+import Company from "App/Models/Company/Company";
 
 test.group("User", () => {
   test("belongs to company", async ({ assert }) => {

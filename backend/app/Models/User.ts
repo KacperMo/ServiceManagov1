@@ -14,7 +14,7 @@ import {
 import Affiliation from "./Affiliation";
 import PasswordResetToken from "./PasswordResetToken";
 import UserProfile from "./UserProfile";
-import Company from "./Company";
+import Company from "App/Models/Company/Company";
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })

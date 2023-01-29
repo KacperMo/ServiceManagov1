@@ -1,7 +1,7 @@
 import { test } from "@japa/runner";
 import { SupplierFactory } from "Database/factories";
-import Supplier from "App/Models/Supplier";
-import Industry from "App/Models/Industry";
+import Supplier from "App/Models/Company/Supplier";
+import Industry from "App/Models/Company/Industry";
 
 test.group("Supplier", () => {
   test("make", async ({ assert }) => {

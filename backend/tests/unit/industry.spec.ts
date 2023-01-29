@@ -1,6 +1,6 @@
 import { test } from "@japa/runner";
 import { IndustryFactory } from "Database/factories";
-import Industry from "App/Models/Industry";
+import Industry from "App/Models/Company/Industry";
 
 test.group("Industry", () => {
   test("make", async ({ assert }) => {

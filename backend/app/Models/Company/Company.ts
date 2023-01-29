@@ -9,17 +9,17 @@ import {
   HasOne,
   hasOne,
 } from "@ioc:Adonis/Lucid/Orm";
-import BusinessCard from "./BusinessCard";
-import Payment from "./Payment";
-import CalendarEvent from "./CalendarEvent";
-import Notyfication from "./Notyfication";
-import User from "./User";
-import Product from "./Product";
-import ZplLabel from "./ZplLabel";
-import SmsApi from "./SmsApi";
-import ServiceList from "./ServiceList";
-import Industry from "./Industry";
-import Category from "./Category";
+import BusinessCard from "../BusinessCard";
+import Payment from "../Payment";
+import CalendarEvent from "../CalendarEvent";
+import Notyfication from "../Notyfication";
+import User from "../User";
+import Product from "../Product";
+import ZplLabel from "../ZplLabel";
+import SmsApi from "../SmsApi";
+import ServiceList from "../ServiceList";
+import Industry from "App/Models/Company/Industry";
+import Category from "App/Models/Company/Category";
 
 export default class Company extends BaseModel {
   @column({ isPrimary: true })
