@@ -9,6 +9,7 @@ export default class extends BaseSchema {
         .references('users.id')
         .onDelete('CASCADE')
       table.integer('company_id')
+      table.boolean('is_owner').notNullable()
       table.string('position', 25)
       table.string('name', 25).notNullable()
       table.string('surname', 25)

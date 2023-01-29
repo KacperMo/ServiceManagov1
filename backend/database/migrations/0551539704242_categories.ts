@@ -11,7 +11,7 @@ export default class extends BaseSchema {
         .unsigned()
         .references('industries.id')
         .onDelete('CASCADE')
-      table.string('name').nullable()
+      table.string('name').notNullable()
       table.datetime('created_at', { useTz: true })
       table.datetime('updated_at', { useTz: true })
     })

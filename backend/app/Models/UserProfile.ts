@@ -6,7 +6,10 @@ export default class UserProfile extends BaseModel {
   public id: string
 
   @column()
-  public company_id: number
+  public company_id: number  
+
+  @column()
+  public is_owner: boolean = true //New user arde default owner of company
 
   @column()
   public position: string
