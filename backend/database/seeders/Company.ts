@@ -1,5 +1,5 @@
 import BaseSeeder from "@ioc:Adonis/Lucid/Seeder";
-import Company from "App/Models/Company";
+import Company from "App/Models/Company/Company";
 
 export default class extends BaseSeeder {
   public static environment = ["development", "testing"];
