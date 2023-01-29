@@ -2,6 +2,7 @@ import { test } from "@japa/runner";
 import { CompanyFactory } from "Database/factories";
 import Company from "App/Models/Company";
 import Industry from "App/Models/Industry";
+import Category from "App/Models/Category";
 
 test.group("Company", () => {
   test("make", async ({ assert }) => {
@@ -19,5 +20,11 @@ test.group("Company", () => {
     const company = await CompanyFactory.with("industry").create();
 
     assert.instanceOf(company.industry, Industry);
+  });
+
+  test("belongs to category", async ({ assert }) => {
+    const company = await CompanyFactory.with("category").create();
+
+    assert.instanceOf(company.category, Category);
   });
 });

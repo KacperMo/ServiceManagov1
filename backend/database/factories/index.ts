@@ -51,6 +51,7 @@ export const CategoryFactory = Factory.define(Category, ({ faker }) => {
   };
 })
   .relation("industry", () => IndustryFactory)
+  .relation("companies", () => CompanyFactory)
   .build();
 
 export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
@@ -77,6 +78,7 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   };
 })
   .relation("industry", () => IndustryFactory)
+  .relation("category", () => CategoryFactory)
   .build();
 
 export const ProductImgFactory = Factory.define(ProductImg, ({ faker }) => {
