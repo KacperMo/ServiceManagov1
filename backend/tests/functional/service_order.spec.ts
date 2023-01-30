@@ -43,12 +43,12 @@ test.group('Service order', () => {
     const ticket = await ServiceOrderFactory.create()
     const ticket1 = await ServiceOrderFactory.make()
     const response = await client
-      .put(`/tickets/${company.id}`)
-      .json({ comment: comapny1.comment })
+      .put(`/tickets/${ticket.id}`)
+      .json({ comment: ticket1.comment })
       .loginAs(user)
 
     response.assertStatus(200)
-    response.assertBodyContains({ comment: comapny1.comment })
+    response.assertBodyContains({ comment: ticket1.comment })
   })
 
   test('destroy', async ({ client }) => {

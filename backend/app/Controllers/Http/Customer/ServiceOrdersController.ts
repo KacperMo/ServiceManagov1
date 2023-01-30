@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import ServiceOrder from 'App/Models/ServiceOrder'
 
 export default class ServiceOrdersController {
+  
   public async index ({}: HttpContextContract) {
     const order = await ServiceOrder.all()
     return order

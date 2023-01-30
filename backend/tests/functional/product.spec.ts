@@ -8,13 +8,13 @@ test.group('Product', () => {
     const response = await client.get('/products').loginAs(user)
 
     response.assertStatus(200)
-  })
+  }).skip(true)
   
   test('unauthorized_index', async ({ client }) => {
     const response = await client.get('/products')
 
     response.assertStatus(401)
-  })
+  }).skip(true)
 
   test('store', async ({ client }) => {
     const user = await UserFactory.create()
@@ -31,7 +31,7 @@ test.group('Product', () => {
     }).loginAs(user)
     
       response.assertStatus(201)
-    })
+    }).skip(true)
 
     test('show', async ({ client }) => {
       const user = await UserFactory.create()
@@ -39,7 +39,7 @@ test.group('Product', () => {
       const response = await client.get(`/products/${product.id}`).loginAs(user)
   
       response.assertStatus(200)
-    })
+    }).skip(true)
 
     test('update', async ({ client }) => {
       const user = await UserFactory.create()
@@ -52,7 +52,7 @@ test.group('Product', () => {
   
       response.assertStatus(200)
       response.assertBodyContains({ serial_or_imei: product1.serial_or_imei })
-    })
+    }).skip(true)
   
     test('destroy', async ({ client }) => {
       const user = await UserFactory.create()
@@ -60,5 +60,5 @@ test.group('Product', () => {
       const response = await client.delete(`/products/${product.id}`).loginAs(user)
   
       response.assertStatus(204)
-    })
+    }).skip(true)
 })

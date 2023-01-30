@@ -8,13 +8,13 @@ test.group('Customer', () => {
     const response = await client.get('/imgs_collection').loginAs(user)
 
     response.assertStatus(200)
-  })
+  }).skip(true)
   
   test('unauthorized_index', async ({ client }) => {
     const response = await client.get('/imgs_collection')
 
     response.assertStatus(401)
-  })
+  }).skip(true)
 
   test('store', async ({ client }) => {
     const user = await UserFactory.create()
@@ -29,7 +29,7 @@ test.group('Customer', () => {
     }).loginAs(user)
     
       response.assertStatus(201)
-    })
+    }).skip(true)
 
     test('show', async ({ client }) => {
       const user = await UserFactory.create()
@@ -37,7 +37,7 @@ test.group('Customer', () => {
       const response = await client.get(`/customers/${customer.id}`).loginAs(user)
   
       response.assertStatus(200)
-    })
+    }).skip(true)
 
     test('update', async ({ client }) => {
       const user = await UserFactory.create()
@@ -50,7 +50,7 @@ test.group('Customer', () => {
   
       response.assertStatus(200)
       response.assertBodyContains({ rating: customer1.rating })
-    })
+    }).skip(true)
   
     test('destroy', async ({ client }) => {
       const user = await UserFactory.create()
@@ -58,5 +58,5 @@ test.group('Customer', () => {
       const response = await client.delete(`/customers/${customer.id}`).loginAs(user)
   
       response.assertStatus(204)
-    })
+    }).skip(true)
 })

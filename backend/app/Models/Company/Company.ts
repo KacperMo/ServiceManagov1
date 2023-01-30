@@ -32,9 +32,6 @@ export default class Company extends BaseModel {
   public categoryId: number;
 
   @column()
-  public owner_id: number;
-
-  @column()
   public name: string;
 
   @column()

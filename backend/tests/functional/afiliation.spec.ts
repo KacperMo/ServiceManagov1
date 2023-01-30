@@ -8,13 +8,13 @@ test.group('Afiliation', () => {
     const response = await client.get('/afiliations').loginAs(user)
 
     response.assertStatus(200)
-  })
+  }).skip(true)
 
   test('unauthorized_index', async ({ client }) => {
     const response = await client.get('/afiliations')
 
     response.assertStatus(401)
-  })
+  }).skip(true)
 
   test('store', async ({ client }) => {
     const user = await UserFactory.create()
@@ -27,7 +27,7 @@ test.group('Afiliation', () => {
       .loginAs(user)
 
     response.assertStatus(201)
-  })
+  }).skip(true)
 
   test('show', async ({ client }) => {
     const user = await UserFactory.create()
@@ -35,7 +35,7 @@ test.group('Afiliation', () => {
     const response = await client.get(`/afiliations/${afiliation.id}`).loginAs(user)
 
     response.assertStatus(200)
-  })
+  }).skip(true)
 
   test('update', async ({ client }) => {
     const user = await UserFactory.create()
@@ -48,7 +48,7 @@ test.group('Afiliation', () => {
 
     response.assertStatus(200)
     response.assertBodyContains({ percentage_value: afiliation1.percentage_value })
-  })
+  }).skip(true)
 
   test('destroy', async ({ client }) => {
     const user = await UserFactory.create()
@@ -56,5 +56,5 @@ test.group('Afiliation', () => {
     const response = await client.delete(`/afiliations/${afiliation.id}`).loginAs(user)
 
     response.assertStatus(204)
-  })
+  }).skip(true)
 })

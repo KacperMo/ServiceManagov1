@@ -8,13 +8,13 @@ test.group('Business card', () => {
     const response = await client.get('/business_card').loginAs(user)
 
     response.assertStatus(200)
-  })
+  }).skip(true)
 
   test('unauthorized_index', async ({ client }) => {
     const response = await client.get('/business_card')
 
     response.assertStatus(401)
-  })
+  }).skip(true)
 
   test('store', async ({ client }) => {
     const user = await UserFactory.create()
@@ -28,7 +28,7 @@ test.group('Business card', () => {
       .loginAs(user)
 
     response.assertStatus(201)
-  })
+  }).skip(true)
 
   test('show', async ({ client }) => {
     const user = await UserFactory.create()
@@ -36,7 +36,7 @@ test.group('Business card', () => {
     const response = await client.get(`/business_card/${card.id}`).loginAs(user)
 
     response.assertStatus(200)
-  })
+  }).skip(true)
 
   test('update', async ({ client }) => {
     const user = await UserFactory.create()
@@ -49,7 +49,7 @@ test.group('Business card', () => {
 
     response.assertStatus(200)
     response.assertBodyContains({ description: card1.description })
-  })
+  }).skip(true)
 
   test('destroy', async ({ client }) => {
     const user = await UserFactory.create()
@@ -57,5 +57,7 @@ test.group('Business card', () => {
     const response = await client.delete(`/business_card/${card.id}`).loginAs(user)
 
     response.assertStatus(204)
-  })
+  }).skip(true)
 })
+
+

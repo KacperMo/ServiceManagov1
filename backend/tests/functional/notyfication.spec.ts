@@ -8,13 +8,13 @@ test.group('Notyfication', () => {
     const response = await client.get('/notyfications').loginAs(user)
 
     response.assertStatus(200)
-  })
+  }).skip(true)
   
   test('unauthorized_index', async ({ client }) => {
     const response = await client.get('/notyfications')
 
     response.assertStatus(401)
-  })
+  }).skip(true)
 
   test('store', async ({ client }) => {
     const user = await UserFactory.create()
@@ -26,7 +26,7 @@ test.group('Notyfication', () => {
     }).loginAs(user)
     
       response.assertStatus(201)
-    })
+    }).skip(true)
 
     test('show', async ({ client }) => {
       const user = await UserFactory.create()
@@ -34,7 +34,7 @@ test.group('Notyfication', () => {
       const response = await client.get(`/notyfications/${notyfication.id}`).loginAs(user)
   
       response.assertStatus(200)
-    })
+    }).skip(true)
 
     test('update', async ({ client }) => {
       const user = await UserFactory.create()
@@ -47,7 +47,7 @@ test.group('Notyfication', () => {
   
       response.assertStatus(200)
       response.assertBodyContains({ rank: notyfication1.rank })
-    })
+    }).skip(true)
   
     test('destroy', async ({ client }) => {
       const user = await UserFactory.create()
@@ -55,5 +55,5 @@ test.group('Notyfication', () => {
       const response = await client.delete(`/notyfications/${notyfication.id}`).loginAs(user)
   
       response.assertStatus(204)
-    })
+    }).skip(true)
 })

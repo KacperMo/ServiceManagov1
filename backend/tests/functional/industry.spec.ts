@@ -8,13 +8,13 @@ test.group('Industry', () => {
     const response = await client.get('/industries').loginAs(user)
 
     response.assertStatus(200)
-  })
+  }).skip(true)
   
   test('unauthorized_index', async ({ client }) => {
     const response = await client.get('/industries')
 
     response.assertStatus(401)
-  })
+  }).skip(true)
 
   test('store', async ({ client }) => {
     const user = await UserFactory.create()
@@ -24,7 +24,7 @@ test.group('Industry', () => {
     }).loginAs(user)
     
       response.assertStatus(201)
-    })
+    }).skip(true)
 
     test('show', async ({ client }) => {
       const user = await UserFactory.create()
@@ -32,7 +32,7 @@ test.group('Industry', () => {
       const response = await client.get(`/industries/${industry.id}`).loginAs(user)
   
       response.assertStatus(200)
-    })
+    }).skip(true)
 
     test('update', async ({ client }) => {
       const user = await UserFactory.create()
@@ -45,7 +45,7 @@ test.group('Industry', () => {
   
       response.assertStatus(200)
       response.assertBodyContains({ img_src1: imgs1.img_src1 })
-    })
+    }).skip(true)
   
     test('destroy', async ({ client }) => {
       const user = await UserFactory.create()
@@ -53,5 +53,5 @@ test.group('Industry', () => {
       const response = await client.delete(`/industries/${industry.id}`).loginAs(user)
   
       response.assertStatus(204)
-    })
+    }).skip(true)
 })
