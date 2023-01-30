@@ -13,7 +13,6 @@ test.group("Product", () => {
   test("create", async ({ assert }) => {
     const product = await ProductFactory.create();
 
-    // assert.instanceOf(product, Product);
     assert.properties(product, [
       "name",
       "model",

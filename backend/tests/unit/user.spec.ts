@@ -7,5 +7,6 @@ test.group("User", () => {
     const user = await UserFactory.with("company").create();
 
     assert.instanceOf(user.company, Company);
+    assert.properties(user, ["companyId"]);
   });
 });

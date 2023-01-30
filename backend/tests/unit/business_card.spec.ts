@@ -11,9 +11,9 @@ test.group("Business card", () => {
   });
 
   test("create", async ({ assert }) => {
-    const businessCard = await BusinessCardFactory.create();
+    const businessCard = await BusinessCardFactory.with("company").create();
 
-    assert.instanceOf(businessCard, BusinessCard);
+    assert.properties(businessCard, ["companyId", "description"]);
   });
 
   test("belongs to company", async ({ assert }) => {

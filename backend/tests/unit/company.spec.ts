@@ -12,8 +12,14 @@ test.group("Company", () => {
   });
 
   test("create", async ({ assert }) => {
-    const company = await CompanyFactory.create();
-    assert.properties(company, ["name"]); //  "industry_id",  "owner_id",
+    const company = await CompanyFactory.with("industry")
+      .with("category")
+      .with("users")
+      .with("products")
+      .with("businessCards")
+      .create();
+
+    assert.properties(company, ["industryId", "categoryId", "name"]);
   });
 
   test("belongs to industry", async ({ assert }) => {

@@ -10,9 +10,9 @@ test.group("Category", () => {
   });
 
   test("create", async ({ assert }) => {
-    const category = await CategoryFactory.create();
+    const category = await CategoryFactory.with("industry").create();
 
-    assert.properties(category, ["name"]);
+    assert.properties(category, ["industryId", "name"]);
   });
 
   test("belongs to industry", async ({ assert }) => {
