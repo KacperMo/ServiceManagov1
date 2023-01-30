@@ -81,7 +81,7 @@ export const BusinessCardFactory = Factory.define(BusinessCard, ({ faker }) => {
 export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   return {
     id: faker.datatype.uuid(),
-    // industry_id: IndustryFactory.create(), //faker.datatype.number(),
+    // industry_id: faker.datatype.number(),
     // owner_id: faker.datatype.number(),
     name: faker.company.name(),
     city: faker.address.cityName(),
@@ -95,6 +95,7 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   .relation("products", () => UserFactory)
   .relation("businessCards", () => UserFactory)
   .build();
+// console.log()
 
 export const ProductFactory = Factory.define(Product, ({ faker }) => {
   return {

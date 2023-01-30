@@ -5,8 +5,7 @@ export default class CreateCompanyValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    industry_id: schema.number(),
-    owner_id: schema.number(),
+    industryId: schema.number(),
     name: schema.string([rules.maxLength(255)]),
     city: schema.string.optional([rules.maxLength(255)]),
     street: schema.string.optional([rules.maxLength(255)]),

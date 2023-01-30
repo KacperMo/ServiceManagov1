@@ -1,61 +1,68 @@
-import { test } from '@japa/runner'
-import { CompanyFactory } from 'Database/factories'
-import { UserFactory } from 'Database/factories'
+import { test } from "@japa/runner";
+import { CompanyFactory, IndustryFactory } from "Database/factories";
+import { UserFactory } from "Database/factories";
 
-test.group('Company', () => {
-  test('index', async ({ client }) => {
-    const user = await UserFactory.create()
-    const response = await client.get('/company').loginAs(user)
+test.group("Company", () => {
+  const url = "/companies";
 
-    response.assertStatus(200)
-  })
+  test("index", async ({ client }) => {
+    const user = await UserFactory.create();
+    const response = await client.get(url).loginAs(user);
 
-  test('unauthorized_index', async ({ client }) => {
-    const response = await client.get('/company')
+    response.assertStatus(200);
+  });
 
-    response.assertStatus(401)
-  })
+  test("index unauthorized", async ({ client }) => {
+    const response = await client.get(url);
 
-  test('store', async ({ client }) => {
-    const user = await UserFactory.create()
-    const company = await CompanyFactory.make()
-    const response = await client.post('/company').json({
-      name: company.name,
-      city: company.city,
-      phone_number: company.phone_number,
-      nip: company.nip,
-    })
-      .loginAs(user)
+    response.assertStatus(401);
+  });
 
-    response.assertStatus(201)
-  })
+  test("store", async ({ client }) => {
+    const user = await UserFactory.create();
+    const industry = await IndustryFactory.create();
+    const company = await CompanyFactory.merge({
+      industryId: industry.id,
+    }).make();
+    const response = await client.post(url).json(company).loginAs(user);
 
-  test('show', async ({ client }) => {
-    const user = await UserFactory.create()
-    const company = await CompanyFactory.create()
-    const response = await client.get(`/company/${company.id}`).loginAs(user)
+    response.assertStatus(201);
+    // response.dump();
+    // response.dumpError();
+    // response.dumpBody();
+  });
 
-    response.assertStatus(200)
-  })
+  test("show", async ({ client }) => {
+    const user = await UserFactory.create();
+    const company = await CompanyFactory.create();
+    const response = await client.get(`${url}/${company.id}`).loginAs(user);
 
-  test('update', async ({ client }) => {
-    const user = await UserFactory.create()
-    const company = await CompanyFactory.create()
-    const comapny1 = await CompanyFactory.make()
+    response.assertStatus(200);
+  });
+
+  test("update", async ({ client }) => {
+    const user = await UserFactory.create();
+    const industry = await IndustryFactory.create();
+    const company = await CompanyFactory.with("industry").create();
+    const company1 = await CompanyFactory.with("industry")
+      .merge({
+        industryId: industry.id,
+      })
+      .make();
     const response = await client
-      .put(`/company/${company.id}`)
-      .json({ name: comapny1.name })
-      .loginAs(user)
+      .put(`${url}/${company.id}`)
+      .json(company1)
+      .loginAs(user);
 
-    response.assertStatus(200)
-    response.assertBodyContains({ name: comapny1.name })
-  })
+    response.assertStatus(200);
+    response.assertBodyContains({ name: company1.name });
+  });
 
-  test('destroy', async ({ client }) => {
-    const user = await UserFactory.create()
-    const company = await CompanyFactory.create()
-    const response = await client.delete(`/company/${company.id}`).loginAs(user)
+  test("destroy", async ({ client }) => {
+    const user = await UserFactory.create();
+    const company = await CompanyFactory.create();
+    const response = await client.delete(`${url}/${company.id}`).loginAs(user);
 
-    response.assertStatus(204)
-  })
-})
+    response.assertStatus(204);
+  });
+});

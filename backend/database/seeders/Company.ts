@@ -12,6 +12,7 @@ export default class extends BaseSeeder {
       {
         id: "19ef63bd-4852-4206-ba81-6c04098016be",
         name: "Serwis GSM X",
+        category_id: 1,
         industry_id: 1,
         // owner_id: 1,
         city: "Warszawa",
@@ -21,6 +22,7 @@ export default class extends BaseSeeder {
       {
         id: "1806a163-a426-476a-8fdb-a07bca3df519",
         name: "Serwis GSM Y",
+        category_id: 1,
         industry_id: 1,
         // owner_id: 2,
         city: "Kraków",
@@ -31,6 +33,7 @@ export default class extends BaseSeeder {
       {
         id: "d0d4ad43-81af-420c-b0f4-c24385e65789",
         name: "Serwis GSM Z",
+        category_id: 1,
         industry_id: 1,
         // owner_id: 3,
         city: "Sałata",

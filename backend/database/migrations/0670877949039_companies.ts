@@ -17,7 +17,7 @@ export default class extends BaseSchema {
         .references("categories.id")
         .onDelete("CASCADE");
       table.string("name").notNullable().index();
-      table.string("nip", 13).notNullable().index();
+      table.string("nip", 13).nullable().index();
       table.string("regon", 10).nullable();
       table.string("province", 30).nullable(); //województwo
       table.string("district", 30).nullable(); //rejon
@@ -28,7 +28,7 @@ export default class extends BaseSchema {
       table.string("zip_code", 40).nullable();
       table.string("street", 30).nullable();
       table.string("post_city", 30).nullable(); // Poczta miasto
-      table.string("phone_number", 13).notNullable();
+      table.string("phone_number", 13).nullable();
       table.string("email", 50).nullable();
       table.string("logo", 250).nullable();
       table.datetime("created_at", { useTz: true });
