@@ -8,7 +8,9 @@ import {
   HasMany,
   HasOne,
   hasOne,
+  beforeCreate,
 } from "@ioc:Adonis/Lucid/Orm";
+import { v4 as uuid } from "uuid";
 import Payment from "../Payment";
 import CalendarEvent from "../CalendarEvent";
 import Notyfication from "../Notyfication";
@@ -22,6 +24,8 @@ import Category from "App/Models/Company/Category";
 import BusinessCard from "App/Models/Company/BusinessCard";
 
 export default class Company extends BaseModel {
+  public static selfAssignPrimaryKey = true;
+
   @column({ isPrimary: true })
   public id: string;
 
@@ -84,6 +88,11 @@ export default class Company extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @beforeCreate()
+  public static assignUuid(company: Company) {
+    company.id = uuid();
+  }
 
   @belongsTo(() => Industry)
   public industry: BelongsTo<typeof Industry>;
