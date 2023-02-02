@@ -10,7 +10,9 @@ import {
   hasOne,
   belongsTo,
   BelongsTo,
+  beforeCreate,
 } from "@ioc:Adonis/Lucid/Orm";
+import { v4 as uuid } from "uuid";
 import Affiliation from "./Affiliation";
 import PasswordResetToken from "./PasswordResetToken";
 import UserProfile from "./UserProfile";
@@ -37,6 +39,11 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @beforeCreate()
+  public static assignUuid(user: User) {
+    user.id = uuid();
+   }
 
   @beforeSave()
   public static async hashPassword(user: User) {

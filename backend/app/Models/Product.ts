@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
-import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, beforeCreate, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
 import Company from "App/Models/Company/Company";
+import { v4 as uuid } from "uuid";
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
@@ -59,6 +60,11 @@ export default class Product extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  @beforeCreate()
+  public static assignUuid(product: Product) {
+    product.id = uuid();
+   }
 
   @belongsTo(() => Company)
   public company: BelongsTo<typeof Company>;
