@@ -25,11 +25,12 @@ Route.get("/", async () => {
 });
 
 Route.group(() => {
-Route.resource("users", "User/UsersController").apiOnly();
-Route.resource("profile", "User/UserProfilesController").apiOnly();
-Route.resource("companies", "Company/CompaniesController").apiOnly();
-Route.resource("tickets", "Customer/ServiceOrdersController").apiOnly();
- }).middleware(['auth'])
+  Route.resource("users", "User/UsersController").apiOnly();
+  Route.resource("profile", "User/UserProfilesController").apiOnly();
+  Route.resource("industries", "Company/IndustriesController").apiOnly();
+  Route.resource("companies", "Company/CompaniesController").apiOnly();
+  Route.resource("tickets", "Customer/ServiceOrdersController").apiOnly();
+}).middleware(["auth"]);
 
 Route.post("login", "AuthController.login");
 Route.post("logout", "AuthController.logout");

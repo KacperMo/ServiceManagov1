@@ -58,11 +58,11 @@ export const CategoryFactory = Factory.define(Category, ({ faker }) => {
 
 export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
   return {
-    id: faker.datatype.uuid(),
-    company_name: faker.company.name(),
-    nip: faker.phone.number("###-###-##-##"),
-    api: faker.internet.url(),
-    api_key: faker.internet.password(20),
+    // id: faker.datatype.uuid(),
+    name: faker.company.name(),
+    // nip: faker.phone.number("###-###-##-##"),
+    // api: faker.internet.url(),
+    // api_key: faker.internet.password(20),
   };
 })
   .relation("industry", () => IndustryFactory)

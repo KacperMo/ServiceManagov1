@@ -56,8 +56,17 @@ export const reporters: Required<Config>["reporters"] = [specReporter()];
 |
 */
 export const runnerHooks: Pick<Required<Config>, "setup" | "teardown"> = {
-  setup: [() => TestUtils.ace().loadCommands(), () => TestUtils.db().migrate()],
-  teardown: [], // () => TestUtils.db().seed()
+  setup: [
+    () => TestUtils.ace().loadCommands(),
+    () => TestUtils.db().migrate(),
+    // () => TestUtils.db().truncate(),
+    // () => TestUtils.db().seed(),
+  ],
+  teardown: [
+    // () => TestUtils.ace().loadCommands(),
+    // () => TestUtils.db().migrate(),
+    // () => TestUtils.db().seed(),
+  ],
 };
 
 /*

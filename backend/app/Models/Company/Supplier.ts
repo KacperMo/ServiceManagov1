@@ -12,53 +12,53 @@ export default class Supplier extends BaseModel {
   @column()
   public name: string;
 
-  @column()
-  public nip: string;
+  // @column()
+  // public nip: string;
 
-  @column()
-  public regon: string;
+  // @column()
+  // public regon: string;
 
-  @column()
-  public province: string;
+  // @column()
+  // public province: string;
 
-  @column()
-  public district: string;
+  // @column()
+  // public district: string;
 
-  @column()
-  public community: string;
+  // @column()
+  // public community: string;
 
-  @column()
-  public city: string;
+  // @column()
+  // public city: string;
 
-  @column()
-  public property_number: string;
+  // @column()
+  // public property_number: string;
 
-  @column()
-  public apartment_number: string;
+  // @column()
+  // public apartment_number: string;
 
-  @column()
-  public zip_code: string;
+  // @column()
+  // public zip_code: string;
 
-  @column()
-  public street: string;
+  // @column()
+  // public street: string;
 
-  @column()
-  public post_city: string;
+  // @column()
+  // public post_city: string;
 
-  @column()
-  public phone_number: string;
+  // @column()
+  // public phone_number: string;
 
-  @column()
-  public email: string;
+  // @column()
+  // public email: string;
 
-  @column()
-  public logo: string;
+  // @column()
+  // public logo: string;
 
-  @column()
-  public api: string;
+  // @column()
+  // public api: string;
 
-  @column()
-  public api_key: string;
+  // @column()
+  // public api_key: string;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

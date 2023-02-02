@@ -13,7 +13,7 @@ test.group("Supplier", () => {
   test("create", async ({ assert }) => {
     const supplier = await SupplierFactory.with("industry").create();
 
-    assert.properties(supplier, ["industryId", "company_name"]);
+    assert.properties(supplier, ["industryId", "name"]);
   });
 
   test("belongs to industry", async ({ assert }) => {
