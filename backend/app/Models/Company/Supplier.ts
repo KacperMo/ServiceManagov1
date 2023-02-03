@@ -4,7 +4,7 @@ import Industry from "./Industry";
 
 export default class Supplier extends BaseModel {
   @column({ isPrimary: true })
-  public id: number;
+  public id: string;
 
   @column()
   public industryId: number;

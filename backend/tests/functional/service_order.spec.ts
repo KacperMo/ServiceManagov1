@@ -20,7 +20,7 @@ test.group('Service order', () => {
     const user = await UserFactory.create()
     const ticket = await ServiceOrderFactory.make()
     const response = await client.post('/ticket').json({
-      customer_id: 1,
+      customerId: 1,
       rma: ticket.rma,
       brand: ticket.brand,
       comment: ticket.comment,

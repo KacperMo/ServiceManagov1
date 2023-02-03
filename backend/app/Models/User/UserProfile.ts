@@ -6,10 +6,10 @@ export default class UserProfile extends BaseModel {
   public id: string
 
   @column()
-  public company_id: number  
+  public companyId: number  
 
   @column()
-  public is_owner: boolean = true //New user arde default owner of company
+  public isOwner: boolean = true //New user arde default owner of company
 
   @column()
   public position: string
@@ -33,7 +33,7 @@ export default class UserProfile extends BaseModel {
   public note: string
 
   @column()
-  public is_active: boolean
+  public isActive: boolean
 
   @column()
   public avatar: string

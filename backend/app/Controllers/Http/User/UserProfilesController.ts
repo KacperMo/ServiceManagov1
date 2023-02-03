@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import UserProfile from 'App/Models/UserProfile'
+import UserProfile from 'App/Models/User/UserProfile'
 
 export default class UserProfilesController {
   public async index ({}: HttpContextContract) {
@@ -34,14 +34,14 @@ export default class UserProfilesController {
 
   public async show ({params}: HttpContextContract) {
     const profile = await UserProfile.find(params.id)
-
+    
     return profile
   }
 
   public async update ({ request, params }: HttpContextContract) {
     const profile = await UserProfile.findOrFail(params.id)
     const email = request.input('email')
-    await user.merge({ email: email }).save()
+    await profile.merge({ email: email }).save()
 
     return profile
   }

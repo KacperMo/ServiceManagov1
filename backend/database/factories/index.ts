@@ -141,15 +141,15 @@ export const UserProfileFactory = Factory.define(UserProfile, ({ faker }) => {
 
 export const AffiliationFactory = Factory.define(Affiliation, ({ faker }) => {
   return {
-    user_id: faker.datatype.number(5),
-    percentage_value: faker.datatype.number(20),
-    afiliated_company_id: faker.datatype.number(20),
+    userId: faker.datatype.uuid(),
+    percentageValue: faker.datatype.number(20),
+    afiliatedCompanyId: faker.datatype.uuid(),
   };
 }).build();
 
 export const PaymentFactory = Factory.define(Payment, ({ faker }) => {
   return {
-    company_id: faker.datatype.uuid(),
+    companyId: faker.datatype.uuid(),
     ammount: faker.datatype.number(100),
     comfirmation: faker.datatype.boolean(),
   };
@@ -190,7 +190,8 @@ export const NotyficationFactory = Factory.define(Notyfication, ({ faker }) => {
 
 export const ServiceOrderFactory = Factory.define(ServiceOrder, ({ faker }) => {
   return {
-    company_id: faker.datatype.uuid(),
+    id: faker.datatype.uuid(),
+    customerId: 1,
     rma: faker.datatype.uuid(),
     type: faker.commerce.department(),
     brand: faker.company.bsNoun(),

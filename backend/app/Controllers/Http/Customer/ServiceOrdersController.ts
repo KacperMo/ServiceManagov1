@@ -10,7 +10,7 @@ export default class ServiceOrdersController {
 
   public async store ({request, response}: HttpContextContract) {
     const taskData = request.only([
-      'title', 'description', 'rma', 'type',
+      'customer_id','title', 'description', 'rma', 'type',
       'brand', 'model', 'serial_number', 'issue_description',
       'comment', 'note', 'nip', 'type_of_payment', 'repair_costs',
       'parts_costs', 'invoice', 'close', 'return'])

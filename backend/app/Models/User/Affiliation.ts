@@ -6,13 +6,13 @@ export default class Affiliation extends BaseModel {
   public id: number
 
   @column()
-  public user_id: string
+  public userId: string
 
   @column()
-  public percentage_value: number
+  public percentageValue: number
 
   @column()
-  public afiliated_company_id: string
+  public afiliatedCompanyId: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

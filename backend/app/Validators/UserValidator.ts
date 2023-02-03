@@ -10,5 +10,5 @@ export default class UserValidator {
     name: schema.string([rules.maxLength(255)]),
   });
 
-  public messages: CustomMessages = {'ok.'}
+  public messages: CustomMessages = {'1':'ok'}
 }

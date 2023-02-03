@@ -5,7 +5,7 @@ import { UserProfileFactory } from 'Database/factories'
 test.group('User profile', () => {
   test('index', async ({ client }) => {
     const user = await UserFactory.create()
-    const response = await client.get('/profile').loginAs(user)
+    const response = await client.get('/profiles').loginAs(user)
 
     response.assertStatus(200)
   })
@@ -14,7 +14,7 @@ test.group('User profile', () => {
     const user = await UserFactory.create()
     const profile = await UserProfileFactory.make()
     const response = await client
-      .post('/profile')
+      .post('/profiles')
       .json({
         email: profile.email,
         name: profile.name,
@@ -27,7 +27,7 @@ test.group('User profile', () => {
   test('show', async ({ client }) => {
     const user = await UserFactory.create()
     const profile = await UserProfileFactory.create()
-    const response = await client.get(`/profile/${profile.id}`).loginAs(user)
+    const response = await client.get(`/profiles/${profile.id}`).loginAs(user)
 
     response.assertStatus(200)
   })
@@ -36,8 +36,8 @@ test.group('User profile', () => {
     const user = await UserFactory.create()
     const profile = await UserProfileFactory.create()
     const response = await client
-      .put(`/profile/${profile.id}`)
-      .json({ name: profile.name })
+      .put(`/profiles/${profile.id}`)
+      .json({ email: profile.email })
       .loginAs(user)
 
     response.assertStatus(200)
@@ -47,7 +47,7 @@ test.group('User profile', () => {
   test('destroy', async ({ client }) => {
     const user = await UserFactory.create()
     const profile = await UserProfileFactory.create()
-    const response = await client.delete(`/profile/${profile.id}`).loginAs(user)
+    const response = await client.delete(`/profiles/${profile.id}`).loginAs(user)
 
     response.assertStatus(204)
   })

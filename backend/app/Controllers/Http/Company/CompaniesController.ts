@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import { v4 as uuid } from "uuid";
 import Company from "App/Models/Company/Company";
 import CreateCompanyValidator from "App/Validators/CreateCompanyValidator";
 

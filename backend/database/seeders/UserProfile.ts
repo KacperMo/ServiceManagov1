@@ -1,11 +1,11 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import UserProfile from 'App/Models/UserProfile'
+import UserProfile from 'App/Models/User/UserProfile'
 
 export default class extends BaseSeeder {
   public async run () {
     await UserProfile.createMany([
       {
-        company_id: 1,
+        companyId: 1,
         position: 'pracownik',
         name: 'Michał',
         surname: 'Bogusz',
@@ -13,10 +13,10 @@ export default class extends BaseSeeder {
         email: 'michal@bogusz.pl',
         salary: 3200,
         note: 'Pełen etat',
-        is_active: true,
+        isActive: true,
       },
       {
-        company_id: 1,
+        companyId: 1,
         position: 'pracownik',
         name: 'Agata',
         surname: 'Małysz',
@@ -24,7 +24,7 @@ export default class extends BaseSeeder {
         email: 'agata@malysz.pl',
         salary: 3200,
         note: 'Pełen etat',
-        is_active: true,
+        isActive: true,
       },
     ])
   }

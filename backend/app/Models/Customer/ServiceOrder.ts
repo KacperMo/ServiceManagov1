@@ -7,7 +7,7 @@ export default class ServiceOrder extends BaseModel {
   public id: string
 
   @column()
-  public customer_id: number
+  public customerId: number
 
   @column()
   public rma: string
@@ -22,10 +22,10 @@ export default class ServiceOrder extends BaseModel {
   public model: string
 
   @column()
-  public serial_number: string
+  public serialNumber: string
 
   @column()
-  public issue_description: string
+  public issueDescription: string
 
   @column()
   public comment: string
@@ -37,13 +37,13 @@ export default class ServiceOrder extends BaseModel {
   public nip: string
 
   @column()
-  public type_of_payment: string
+  public paymentType: string
 
   @column()
-  public repair_costs: number
+  public repairCosts: number
 
   @column()
-  public parts_costs: number
+  public partsCosts: number
 
   @column()
   public status: number
