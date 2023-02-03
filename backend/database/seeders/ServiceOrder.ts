@@ -1,5 +1,5 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import ServiceOrder from 'App/Models/ServiceOrder'
+import ServiceOrder from 'App/Models/Customer/ServiceOrder'
 import { ServiceOrderFactory } from 'Database/factories'
 
 export default class extends BaseSeeder {

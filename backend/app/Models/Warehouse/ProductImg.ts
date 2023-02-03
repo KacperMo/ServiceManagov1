@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, belongsTo, BelongsTo, column } from '@ioc:Adonis/Lucid/Orm'
-import Product from './Product'
-import ServiceOrder from './ServiceOrder'
+import Product from '../Warehouse/Product'
+import ServiceOrder from '../Customer/ServiceOrder'
 
 export default class ProductImg extends BaseModel {
   @column({ isPrimary: true })

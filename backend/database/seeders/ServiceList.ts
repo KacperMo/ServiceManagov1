@@ -1,5 +1,5 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import ServiceList from 'App/Models/ServiceList'
+import ServiceList from 'App/Models/Customer/ServiceList'
 
 export default class extends BaseSeeder {
   public async run () {

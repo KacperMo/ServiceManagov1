@@ -1,5 +1,5 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import ProductImg from 'App/Models/ProductImg'
+import ProductImg from 'App/Models/Warehouse/ProductImg'
 
 export default class extends BaseSeeder {
   public async run () {

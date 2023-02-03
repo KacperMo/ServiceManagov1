@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import ProductImg from 'App/Models/ProductImg'
+import ProductImg from 'App/Models/Warehouse/ProductImg'
 
 export default class ProductImgsController {
   public async index ({}: HttpContextContract) {

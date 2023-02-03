@@ -1,6 +1,6 @@
 import { test } from "@japa/runner";
 import { ProductFactory } from "Database/factories";
-import Product from "App/Models/Product";
+import Product from "App/Models/Warehouse/Product";
 import Company from "App/Models/Company/Company";
 
 test.group("Product", () => {

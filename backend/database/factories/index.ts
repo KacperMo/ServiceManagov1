@@ -1,21 +1,21 @@
 import Factory from "@ioc:Adonis/Lucid/Factory";
-import User from "App/Models/User";
+import User from "App/Models/User/User";
 import Company from "App/Models/Company/Company";
-import ProductImg from "App/Models/ProductImg";
-import UserProfile from "App/Models/UserProfile";
-import Affiliation from "App/Models/Affiliation";
+import ProductImg from "App/Models/Warehouse/ProductImg";
+import UserProfile from "App/Models/User/UserProfile";
+import Affiliation from "App/Models/User/Affiliation";
 import Supplier from "App/Models/Company/Supplier";
 import Industry from "App/Models/Company/Industry";
 import Category from "App/Models/Company/Category";
 import BusinessCard from "App/Models/Company/BusinessCard";
-import Payment from "App/Models/Payment";
-import CalendarEvent from "App/Models/CalendarEvent";
-import Schooling from "App/Models/Schooling";
-import Notyfication from "App/Models/Notyfication";
-import Product from "App/Models/Product";
-import ServiceOrder from "App/Models/ServiceOrder";
-import ServiceList from "App/Models/ServiceList";
-import Customer from "App/Models/Customer";
+import Payment from "App/Models/Integration/Payment";
+import CalendarEvent from "App/Models/System/CalendarEvent";
+import Schooling from "App/Models/Marketing/Schooling";
+import Notyfication from "App/Models/System/Notyfication";
+import Product from "App/Models/Warehouse/Product";
+import ServiceOrder from "App/Models/Customer/ServiceOrder";
+import ServiceList from "App/Models/Customer/ServiceList";
+import Customer from "App/Models/Customer/Customer";
 
 export const UserFactory = Factory.define(User, ({ faker }) => {
   return {

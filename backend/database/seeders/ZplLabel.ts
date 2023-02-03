@@ -1,5 +1,5 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import ZplLabel from 'App/Models/ZplLabel'
+import ZplLabel from 'App/Models/Integration/ZplLabel'
 
 export default class extends BaseSeeder {
   public async run () {

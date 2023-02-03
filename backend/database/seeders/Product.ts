@@ -1,5 +1,5 @@
 import BaseSeeder from "@ioc:Adonis/Lucid/Seeder";
-import Product from "App/Models/Product";
+import Product from "App/Models/Warehouse/Product";
 
 export default class extends BaseSeeder {
   public async run() {

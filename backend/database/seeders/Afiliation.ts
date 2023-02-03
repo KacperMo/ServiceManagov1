@@ -1,5 +1,5 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import Affiliation from 'App/Models/Affiliation'
+import Affiliation from 'App/Models/User/Affiliation'
 
 export default class extends BaseSeeder {
   public async run () {

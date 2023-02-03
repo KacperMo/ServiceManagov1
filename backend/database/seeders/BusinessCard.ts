@@ -8,7 +8,7 @@ export default class extends BaseSeeder {
         id: 1,
         companyId: "19ef63bd-4852-4206-ba81-6c04098016be",
         description:
-          "Our company guarantees that you will go bankrupt. Your wife will leave you and your daughter will not go to college",
+          "Our company guarantees that you will go bankrupt.Your wife will leave you and your daughter will not go to college",
       },
     ]);
   }

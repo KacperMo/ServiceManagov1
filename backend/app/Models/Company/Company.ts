@@ -11,14 +11,14 @@ import {
   beforeCreate,
 } from "@ioc:Adonis/Lucid/Orm";
 import { v4 as uuid } from "uuid";
-import Payment from "../Payment";
-import CalendarEvent from "../CalendarEvent";
-import Notyfication from "../Notyfication";
-import User from "../User";
-import Product from "../Product";
-import ZplLabel from "../ZplLabel";
-import SmsApi from "../SmsApi";
-import ServiceList from "../ServiceList";
+import Payment from "../Integration/Payment";
+import CalendarEvent from "../System/CalendarEvent";
+import Notyfication from "../System/Notyfication";
+import User from "../User/User";
+import Product from "../Warehouse/Product";
+import ZplLabel from "../Integration/ZplLabel";
+import SmsApi from "../Integration/SmsApi";
+import ServiceList from "../Customer/ServiceList";
 import Industry from "App/Models/Company/Industry";
 import Category from "App/Models/Company/Category";
 import BusinessCard from "App/Models/Company/BusinessCard";

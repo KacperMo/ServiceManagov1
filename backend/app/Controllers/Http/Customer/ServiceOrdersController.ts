@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import ServiceOrder from 'App/Models/ServiceOrder'
+import ServiceOrder from 'App/Models/Customer/ServiceOrder'
 
 export default class ServiceOrdersController {
   

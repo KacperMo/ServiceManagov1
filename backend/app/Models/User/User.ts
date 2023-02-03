@@ -14,7 +14,7 @@ import {
 } from "@ioc:Adonis/Lucid/Orm";
 import { v4 as uuid } from "uuid";
 import Affiliation from "./Affiliation";
-import PasswordResetToken from "./PasswordResetToken";
+import PasswordResetToken from "../PasswordResetToken";
 import UserProfile from "./UserProfile";
 import Company from "App/Models/Company/Company";
 
