@@ -95,7 +95,6 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   .relation("products", () => UserFactory)
   .relation("businessCards", () => UserFactory)
   .build();
-// console.log()
 
 export const ProductFactory = Factory.define(Product, ({ faker }) => {
   return {

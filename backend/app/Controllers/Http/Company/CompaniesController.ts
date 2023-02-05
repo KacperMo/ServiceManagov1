@@ -4,7 +4,7 @@ import CreateCompanyValidator from "App/Validators/CreateCompanyValidator";
 
 export default class CompaniesController {
   public async index({}: HttpContextContract) {
-    return Company.all();
+    return Company.query().preload("industry").preload("category"); // all();
   }
 
   public async store({ request, response }: HttpContextContract) {

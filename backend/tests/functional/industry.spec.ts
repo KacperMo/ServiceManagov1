@@ -10,7 +10,7 @@ test.group("Industry", () => {
     const response = await client.get(url).loginAs(user);
 
     response.assertStatus(200);
-    response.dump();
+    // response.dump();
   });
 
   test("unauthorized_index", async ({ client }) => {

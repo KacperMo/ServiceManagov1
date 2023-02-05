@@ -6,12 +6,14 @@ test.group("Company", () => {
   const url = "/companies";
 
   test("index", async ({ client }) => {
-    const industries = await IndustryFactory.createMany(10);
-    console.log(industries);
+    // const industries = await IndustryFactory.createMany(10);
+    await CompanyFactory.with("industry").with("category").createMany(10);
+    // console.log(industries);
     const user = await UserFactory.create();
     const response = await client.get(url).loginAs(user);
 
     response.assertStatus(200);
+    // response.dumpBody();
   });
 
   test("index unauthorized", async ({ client }) => {
