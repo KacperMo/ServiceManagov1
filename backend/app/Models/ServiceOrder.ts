@@ -1,68 +1,68 @@
-import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, column } from '@ioc:Adonis/Lucid/Orm
+import { DateTime } from "luxon";
+import { BaseModel, beforeCreate, column } from "@ioc:Adonis/Lucid/Orm";
 import { v4 as uuid } from "uuid";
 
 export default class ServiceOrder extends BaseModel {
   @column({ isPrimary: true })
-  public id: string
+  public id: string;
 
   @column()
-  public customer_id: number
+  public customer_id: number;
 
   @column()
-  public rma: string
+  public rma: string;
 
   @column()
-  public type: string
+  public type: string;
 
   @column()
-  public brand: string
+  public brand: string;
 
   @column()
-  public model: string
+  public model: string;
 
   @column()
-  public serial_number: string
+  public serial_number: string;
 
   @column()
-  public issue_description: string
+  public issue_description: string;
 
   @column()
-  public comment: string
+  public comment: string;
 
   @column()
-  public note: string
+  public note: string;
 
   @column()
-  public nip: string
+  public nip: string;
 
   @column()
-  public type_of_payment: string
+  public type_of_payment: string;
 
   @column()
-  public repair_costs: number
+  public repair_costs: number;
 
   @column()
-  public parts_costs: number
+  public parts_costs: number;
 
   @column()
-  public status: number
+  public status: number;
 
   @column()
-  public invoice: boolean
+  public invoice: boolean;
 
   @column()
-  public close: boolean
+  public close: boolean;
 
   @column()
-  public return: DateTime
+  public return: DateTime;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
-  
+  public updatedAt: DateTime;
+
   @beforeCreate()
   public static assignUuid(order: ServiceOrder) {
     order.id = uuid();
