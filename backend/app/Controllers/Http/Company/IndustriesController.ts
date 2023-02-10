@@ -6,15 +6,30 @@ export default class IndustriesController {
     return Industry.all();
   }
 
-  public async create({}: HttpContextContract) {}
+  public async store({ request, response }: HttpContextContract) {
+    const industry = await Industry.create(request.body());
 
-  public async store({}: HttpContextContract) {}
+    return response.created(industry);
+  }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    const industry = Industry.findOrFail(params.id);
 
-  public async edit({}: HttpContextContract) {}
+    return industry;
+  }
 
-  public async update({}: HttpContextContract) {}
+  public async update({ request, params }: HttpContextContract) {
+    const industry = await Industry.findOrFail(params.id);
+    const payload = request.body();
+    industry.merge(payload).save();
 
-  public async destroy({}: HttpContextContract) {}
+    return industry;
+  }
+
+  public async destroy({ response, params }: HttpContextContract) {
+    const industry = await Industry.findOrFail(params.id);
+    await industry.delete();
+
+    return response.noContent();
+  }
 }

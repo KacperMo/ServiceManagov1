@@ -1,18 +1,22 @@
 import { test } from "@japa/runner";
+import User from "App/Models/User";
 import { UserFactory } from "Database/factories";
 import { IndustryFactory } from "Database/factories";
-// import Industry from "App/Models/Company/Industry";
 
-test.group("Industry", () => {
+test.group("Industry", (group) => {
   const url = "/industries";
+  let user: User;
+
+  group.each.setup(async () => {
+    user = await UserFactory.create();
+  });
 
   test("index", async ({ client }) => {
-    const user = await UserFactory.create();
     const response = await client.get(url).loginAs(user);
     const industry = await IndustryFactory.create();
 
     response.assertStatus(200);
-    response.dumpBody();
+    response.assertBodyContains([{ name: industry.name }]);
   });
 
   test("unauthorized_index", async ({ client }) => {
@@ -21,49 +25,38 @@ test.group("Industry", () => {
     response.assertStatus(401);
   });
 
-  // test("store", async ({ client }) => {
-  //   const user = await UserFactory.create();
-  //   const industry = await IndustryFactory.make();
-  //   const response = await client
-  //     .post("/industries")
-  //     .json({
-  //       name: industry.name,
-  //     })
-  //     .loginAs(user);
+  test("store", async ({ client }) => {
+    const industry = await IndustryFactory.make();
+    const response = await client.post(url).json(industry).loginAs(user);
 
-  //   response.assertStatus(201);
-  // }).skip(true);
+    response.assertStatus(201);
+    response.assertBodyContains({ name: industry.name });
+  });
 
-  // test("show", async ({ client }) => {
-  //   const user = await UserFactory.create();
-  //   const industry = await IndustryFactory.create();
-  //   const response = await client
-  //     .get(`/industries/${industry.id}`)
-  //     .loginAs(user);
+  test("show", async ({ client }) => {
+    const industry = await IndustryFactory.create();
+    const response = await client.get(`${url}/${industry.id}`).loginAs(user);
 
-  //   response.assertStatus(200);
-  // }).skip(true);
+    response.assertStatus(200);
+    response.assertBodyContains({ name: industry.name });
+  });
 
-  // test("update", async ({ client }) => {
-  //   const user = await UserFactory.create();
-  //   const industry = await IndustryFactory.create();
-  //   const industry1 = await IndustryFactory.make();
-  //   const response = await client
-  //     .put(`/industries/${industry.id}`)
-  //     .json({ name: industry1.name })
-  //     .loginAs(user);
+  test("update", async ({ client }) => {
+    const industry = await IndustryFactory.create();
+    const industry1 = await IndustryFactory.make();
+    const response = await client
+      .put(`${url}/${industry.id}`)
+      .json({ name: industry1.name })
+      .loginAs(user);
 
-  //   response.assertStatus(200);
-  //   response.assertBodyContains({ img_src1: imgs1.img_src1 });
-  // }).skip(true);
+    response.assertStatus(200);
+    response.assertBodyContains({ name: industry1.name });
+  });
 
-  // test("destroy", async ({ client }) => {
-  //   const user = await UserFactory.create();
-  //   const industry = await IndustryFactory.create();
-  //   const response = await client
-  //     .delete(`/industries/${industry.id}`)
-  //     .loginAs(user);
+  test("destroy", async ({ client }) => {
+    const industry = await IndustryFactory.create();
+    const response = await client.delete(`${url}/${industry.id}`).loginAs(user);
 
-  //   response.assertStatus(204);
-  // }).skip(true);
+    response.assertStatus(204);
+  });
 });
