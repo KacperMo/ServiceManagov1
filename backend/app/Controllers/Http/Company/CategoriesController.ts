@@ -6,15 +6,30 @@ export default class CategoriesController {
     return Category.all();
   }
 
-  public async create({}: HttpContextContract) {}
+  public async store({ request, response }: HttpContextContract) {
+    const category = await Category.create(request.body());
 
-  public async store({}: HttpContextContract) {}
+    return response.created(category);
+  }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    const category = Category.findOrFail(params.id);
 
-  public async edit({}: HttpContextContract) {}
+    return category;
+  }
 
-  public async update({}: HttpContextContract) {}
+  public async update({ request, params }: HttpContextContract) {
+    const category = await Category.findOrFail(params.id);
+    const payload = request.body();
+    category.merge(payload).save();
 
-  public async destroy({}: HttpContextContract) {}
+    return category;
+  }
+
+  public async destroy({ response, params }: HttpContextContract) {
+    const category = await Category.findOrFail(params.id);
+    await category.delete();
+
+    return response.noContent();
+  }
 }

@@ -1,68 +1,76 @@
 import { test } from "@japa/runner";
-import { UserFactory } from "Database/factories";
-import { CategoryFactory } from "Database/factories";
+import User from "App/Models/User";
+import {
+  UserFactory,
+  CategoryFactory,
+  IndustryFactory,
+} from "Database/factories";
 
-test.group("Categories", () => {
+test.group("Categories", (group) => {
   const url = "/categories";
+  let user: User;
 
-  test("index", async ({ client }) => {
-    const user = await UserFactory.create();
-    const response = await client.get(url).loginAs(user);
-    const categories = await CategoryFactory.with("industry").createMany(2);
-    // console.log(categories);
-    response.assertStatus(200);
-    response.dumpBody();
+  group.each.setup(async () => {
+    user = await UserFactory.create();
   });
 
-  test("unauthorized_index", async ({ client }) => {
+  test("index", async ({ client }) => {
+    const response = await client.get(url).loginAs(user);
+    await CategoryFactory.with("industry").create();
+    response.assertStatus(200);
+    response.assertBodyContains([]);
+  });
+
+  test("index unauthorized", async ({ client }) => {
     const response = await client.get(url);
 
     response.assertStatus(401);
   });
 
-  // test("store", async ({ client }) => {
-  //   const user = await UserFactory.create();
-  //   const category = await CategoryFactory.make();
-  //   const response = await client
-  //     .post("/categories")
-  //     .json({
-  //       name: category.name,
-  //     })
-  //     .loginAs(user);
+  test("store", async ({ client }) => {
+    const industry = await IndustryFactory.create();
+    const category = await CategoryFactory.merge({
+      industryId: industry.id,
+    }).make();
+    const response = await client.post(url).json(category).loginAs(user);
 
-  //   response.assertStatus(201);
-  // }).skip(true);
+    response.assertStatus(201);
+    response.assertBodyContains({
+      industry_id: industry.id,
+      name: category.name,
+    });
+  });
 
-  // test("show", async ({ client }) => {
-  //   const user = await UserFactory.create();
-  //   const category = await CategoryFactory.create();
-  //   const response = await client
-  //     .get(`/categories/${category.id}`)
-  //     .loginAs(user);
+  test("show", async ({ client }) => {
+    const category = await CategoryFactory.with("industry").create();
+    const response = await client.get(`${url}/${category.id}`).loginAs(user);
 
-  //   response.assertStatus(200);
-  // }).skip(true);
+    response.assertStatus(200);
+    response.assertBodyContains({ name: category.name });
+  });
 
-  // test("update", async ({ client }) => {
-  //   const user = await UserFactory.create();
-  //   const category = await CategoryFactory.create();
-  //   const category1 = await CategoryFactory.make();
-  //   const response = await client
-  //     .put(`/categories/${category.id}`)
-  //     .json({ name: category1.name })
-  //     .loginAs(user);
+  test("update", async ({ client }) => {
+    const industry = await IndustryFactory.create();
+    const category = await CategoryFactory.with("industry").create();
+    const category1 = await CategoryFactory.merge({
+      industryId: industry.id,
+    }).make();
+    const response = await client
+      .put(`${url}/${category.id}`)
+      .json(category1)
+      .loginAs(user);
 
-  //   response.assertStatus(200);
-  //   response.assertBodyContains({ img_src1: imgs1.img_src1 });
-  // }).skip(true);
+    response.assertStatus(200);
+    response.assertBodyContains({
+      industry_id: industry.id,
+      name: category1.name,
+    });
+  });
 
-  // test("destroy", async ({ client }) => {
-  //   const user = await UserFactory.create();
-  //   const category = await CategoryFactory.create();
-  //   const response = await client
-  //     .delete(`/categories/${category.id}`)
-  //     .loginAs(user);
+  test("destroy", async ({ client }) => {
+    const category = await CategoryFactory.create();
+    const response = await client.delete(`${url}/${category.id}`).loginAs(user);
 
-  //   response.assertStatus(204);
-  // }).skip(true);
+    response.assertStatus(204);
+  });
 });

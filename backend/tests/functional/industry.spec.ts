@@ -19,7 +19,7 @@ test.group("Industry", (group) => {
     response.assertBodyContains([{ name: industry.name }]);
   });
 
-  test("unauthorized_index", async ({ client }) => {
+  test("index unauthorized", async ({ client }) => {
     const response = await client.get(url);
 
     response.assertStatus(401);
