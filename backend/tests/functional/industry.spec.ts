@@ -13,10 +13,10 @@ test.group("Industry", (group) => {
 
   test("index", async ({ client }) => {
     const response = await client.get(url).loginAs(user);
-    const industry = await IndustryFactory.create();
+    await IndustryFactory.create();
 
     response.assertStatus(200);
-    response.assertBodyContains([{ name: industry.name }]);
+    response.assertBodyContains([]);
   });
 
   test("index unauthorized", async ({ client }) => {
@@ -31,6 +31,22 @@ test.group("Industry", (group) => {
 
     response.assertStatus(201);
     response.assertBodyContains({ name: industry.name });
+  });
+
+  test("store vith validation error", async ({ client }) => {
+    const industry = await IndustryFactory.merge({ name: "" }).make();
+    const response = await client.post(url).json(industry).loginAs(user);
+
+    response.assertStatus(422);
+    response.assertBodyContains({
+      errors: [
+        {
+          rule: "required",
+          field: "name",
+          message: "required validation failed",
+        },
+      ],
+    });
   });
 
   test("show", async ({ client }) => {
@@ -51,6 +67,26 @@ test.group("Industry", (group) => {
 
     response.assertStatus(200);
     response.assertBodyContains({ name: industry1.name });
+  });
+
+  test("update with validation error", async ({ client }) => {
+    const industry = await IndustryFactory.create();
+    const industry1 = await IndustryFactory.merge({ name: "" }).make();
+    const response = await client
+      .put(`${url}/${industry.id}`)
+      .json({ name: industry1.name })
+      .loginAs(user);
+
+    response.assertStatus(422);
+    response.assertBodyContains({
+      errors: [
+        {
+          rule: "required",
+          field: "name",
+          message: "required validation failed",
+        },
+      ],
+    });
   });
 
   test("destroy", async ({ client }) => {

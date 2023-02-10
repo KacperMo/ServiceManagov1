@@ -1,5 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Industry from "App/Models/Company/Industry";
+import CreateIndustry from "App/Validators/Company/CreateIndustryValidator";
 
 export default class IndustriesController {
   public async index({}: HttpContextContract) {
@@ -7,7 +8,8 @@ export default class IndustriesController {
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const industry = await Industry.create(request.body());
+    const payload = await request.validate(CreateIndustry);
+    const industry = await Industry.create(payload);
 
     return response.created(industry);
   }
@@ -19,8 +21,8 @@ export default class IndustriesController {
   }
 
   public async update({ request, params }: HttpContextContract) {
+    const payload = await request.validate(CreateIndustry);
     const industry = await Industry.findOrFail(params.id);
-    const payload = request.body();
     industry.merge(payload).save();
 
     return industry;
