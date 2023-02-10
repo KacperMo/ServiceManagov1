@@ -1,5 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Category from "App/Models/Company/Category";
+import CreateCategory from "App/Validators/Company/CreateCategoryValidator";
 
 export default class CategoriesController {
   public async index({}: HttpContextContract) {
@@ -7,7 +8,8 @@ export default class CategoriesController {
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const category = await Category.create(request.body());
+    const payload = await request.validate(CreateCategory);
+    const category = await Category.create(payload);
 
     return response.created(category);
   }
@@ -20,7 +22,7 @@ export default class CategoriesController {
 
   public async update({ request, params }: HttpContextContract) {
     const category = await Category.findOrFail(params.id);
-    const payload = request.body();
+    const payload = await request.validate(CreateCategory);
     category.merge(payload).save();
 
     return category;

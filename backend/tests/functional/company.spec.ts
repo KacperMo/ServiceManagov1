@@ -41,6 +41,26 @@ test.group("Company", (group) => {
     });
   });
 
+  test("store with validation error", async ({ client }) => {
+    const industry = await IndustryFactory.create();
+    const company = await CompanyFactory.merge({
+      industryId: industry.id,
+      name: "",
+    }).make();
+    const response = await client.post(url).json(company).loginAs(user);
+
+    response.assertStatus(422);
+    response.assertBodyContains({
+      errors: [
+        {
+          rule: "required",
+          field: "name",
+          message: "required validation failed",
+        },
+      ],
+    });
+  });
+
   test("show", async ({ client }) => {
     const company = await CompanyFactory.create();
     const response = await client.get(`${url}/${company.id}`).loginAs(user);
@@ -64,6 +84,32 @@ test.group("Company", (group) => {
 
     response.assertStatus(200);
     response.assertBodyContains({ name: company1.name });
+  });
+
+  test("update with validation error", async ({ client }) => {
+    const industry = await IndustryFactory.create();
+    const company = await CompanyFactory.with("industry").create();
+    const company1 = await CompanyFactory.with("industry")
+      .merge({
+        industryId: industry.id,
+        name: "",
+      })
+      .make();
+    const response = await client
+      .put(`${url}/${company.id}`)
+      .json(company1)
+      .loginAs(user);
+
+    response.assertStatus(422);
+    response.assertBodyContains({
+      errors: [
+        {
+          rule: "required",
+          field: "name",
+          message: "required validation failed",
+        },
+      ],
+    });
   });
 
   test("destroy", async ({ client }) => {
