@@ -12,8 +12,13 @@ test.group("Company", () => {
     const user = await UserFactory.create();
     const response = await client.get(url).loginAs(user);
 
+    response.dumpBody();
     response.assertStatus(200);
-    // response.dumpBody();
+
+    // response.dumpHeaders()
+    // response.dumpBody()
+    // response.dumpCookies()
+    // response.dumpError()
   });
 
   test("index unauthorized", async ({ client }) => {
