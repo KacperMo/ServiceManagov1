@@ -1,24 +1,24 @@
 import { test } from "@japa/runner";
+import User from "App/Models/User";
 import { CompanyFactory, IndustryFactory } from "Database/factories";
 import { UserFactory } from "Database/factories";
 
-test.group("Company", () => {
+test.group("Company", (group) => {
   const url = "/companies";
+  let user: User;
+
+  group.each.setup(async () => {
+    user = await UserFactory.create();
+  });
 
   test("index", async ({ client }) => {
-    // const industries = await IndustryFactory.createMany(10);
-    await CompanyFactory.with("industry").with("category").createMany(10);
-    // console.log(industries);
-    const user = await UserFactory.create();
+    const company = await CompanyFactory.with("industry")
+      .with("category")
+      .create();
     const response = await client.get(url).loginAs(user);
 
-    response.dumpBody();
     response.assertStatus(200);
-
-    // response.dumpHeaders()
-    // response.dumpBody()
-    // response.dumpCookies()
-    // response.dumpError()
+    response.assertBodyContains([{ name: company.name }]);
   });
 
   test("index unauthorized", async ({ client }) => {
@@ -28,7 +28,6 @@ test.group("Company", () => {
   });
 
   test("store", async ({ client }) => {
-    const user = await UserFactory.create();
     const industry = await IndustryFactory.create();
     const company = await CompanyFactory.merge({
       industryId: industry.id,
@@ -36,21 +35,21 @@ test.group("Company", () => {
     const response = await client.post(url).json(company).loginAs(user);
 
     response.assertStatus(201);
-    // response.dump();
-    // response.dumpError();
-    // response.dumpBody();
+    response.assertBodyContains({
+      industry_id: industry.id,
+      name: company.name,
+    });
   });
 
   test("show", async ({ client }) => {
-    const user = await UserFactory.create();
     const company = await CompanyFactory.create();
     const response = await client.get(`${url}/${company.id}`).loginAs(user);
 
     response.assertStatus(200);
+    response.assertBodyContains({ name: company.name });
   });
 
   test("update", async ({ client }) => {
-    const user = await UserFactory.create();
     const industry = await IndustryFactory.create();
     const company = await CompanyFactory.with("industry").create();
     const company1 = await CompanyFactory.with("industry")
@@ -68,7 +67,6 @@ test.group("Company", () => {
   });
 
   test("destroy", async ({ client }) => {
-    const user = await UserFactory.create();
     const company = await CompanyFactory.create();
     const response = await client.delete(`${url}/${company.id}`).loginAs(user);
 
