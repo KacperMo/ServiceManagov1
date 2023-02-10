@@ -84,9 +84,16 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
     // industry_id: faker.datatype.number(),
     // owner_id: faker.datatype.number(),
     name: faker.company.name(),
-    city: faker.address.cityName(),
-    phone_number: faker.phone.number("###-###-###"),
     nip: faker.phone.number("###-###-##-##"),
+    regon: faker.phone.number("##########"),
+    province: faker.address.state(),
+    city: faker.address.cityName(),
+    propertyNumber: faker.address.buildingNumber(),
+    apartmentNumber: faker.address.buildingNumber(),
+    zipCode: faker.address.zipCode(),
+    street: faker.address.street(),
+    phoneNumber: faker.phone.number("###-###-###"),
+    email: faker.internet.email(),
   };
 })
   .relation("industry", () => IndustryFactory)

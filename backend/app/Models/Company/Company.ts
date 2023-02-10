@@ -57,22 +57,22 @@ export default class Company extends BaseModel {
   public city: string;
 
   @column()
-  public property_number: string;
+  public propertyNumber: string;
 
   @column()
-  public apartment_number: string;
+  public apartmentNumber: string;
 
   @column()
-  public zip_code: string;
+  public zipCode: string;
 
   @column()
   public street: string;
 
   @column()
-  public post_city: string;
+  public postCity: string;
 
   @column()
-  public phone_number: string;
+  public phoneNumber: string;
 
   @column()
   public email: string;
