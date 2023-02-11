@@ -19,6 +19,7 @@ test.group("Categories", (group) => {
     await CategoryFactory.with("industry").create();
     response.assertStatus(200);
     response.assertBodyContains([]);
+    // response.dumpBody();
   });
 
   test("index unauthorized", async ({ client }) => {

@@ -4,7 +4,7 @@ import CreateCategory from "App/Validators/Company/CreateCategoryValidator";
 
 export default class CategoriesController {
   public async index({}: HttpContextContract) {
-    return Category.all();
+    return Category.query().orderBy("name").preload("industry");
   }
 
   public async store({ request, response }: HttpContextContract) {
