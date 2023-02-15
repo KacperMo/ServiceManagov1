@@ -6,7 +6,6 @@ export default class CreateCompanyValidator {
 
   public schema = schema.create({
     industryId: schema.number(),
-    categoryId: schema.number(),
     name: schema.string([rules.maxLength(255)]),
     nip: schema.string.optional([rules.maxLength(255)]),
     regon: schema.string.optional([rules.maxLength(255)]),

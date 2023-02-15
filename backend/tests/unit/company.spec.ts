@@ -27,19 +27,31 @@ test.group("Company", () => {
   });
 
   test("has many users", async ({ assert }) => {
-    const company = await CompanyFactory.with("users").create();
+    const company = await CompanyFactory.with("industry")
+      .with("users")
+      .with("products")
+      .with("businessCards")
+      .create();
 
     assert.isArray(company.users);
   });
 
   test("has many products", async ({ assert }) => {
-    const company = await CompanyFactory.with("products").create();
+    const company = await CompanyFactory.with("industry")
+      .with("users")
+      .with("products")
+      .with("businessCards")
+      .create();
 
     assert.isArray(company.products);
   });
 
   test("has many business cards", async ({ assert }) => {
-    const company = await CompanyFactory.with("businessCards").create();
+    const company = await CompanyFactory.with("industry")
+      .with("users")
+      .with("products")
+      .with("businessCards")
+      .create();
 
     assert.isArray(company.businessCards);
   });

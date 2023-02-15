@@ -4,10 +4,7 @@ import CreateCompany from "App/Validators/Company/CreateCompanyValidator";
 
 export default class CompaniesController {
   public async index({}: HttpContextContract) {
-    return Company.query()
-      .orderBy("created_at")
-      .preload("industry")
-      .preload("category");
+    return Company.query().orderBy("created_at").preload("industry");
   }
 
   public async store({ request, response }: HttpContextContract) {
@@ -21,7 +18,6 @@ export default class CompaniesController {
     const company = await Company.query()
       .where("id", "=", params.id)
       .preload("industry")
-      .preload("category")
       .firstOrFail();
 
     return company;
