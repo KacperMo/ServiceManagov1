@@ -53,7 +53,7 @@ export const CategoryFactory = Factory.define(Category, ({ faker }) => {
   };
 })
   .relation("industry", () => IndustryFactory)
-  .relation("companies", () => CompanyFactory)
+  // .relation("companies", () => CompanyFactory)
   .build();
 
 export const SupplierFactory = Factory.define(Supplier, ({ faker }) => {
@@ -81,8 +81,6 @@ export const BusinessCardFactory = Factory.define(BusinessCard, ({ faker }) => {
 export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   return {
     id: faker.datatype.uuid(),
-    // industry_id: faker.datatype.number(),
-    // owner_id: faker.datatype.number(),
     name: faker.company.name(),
     nip: faker.phone.number("###-###-##-##"),
     regon: faker.phone.number("##########"),
@@ -97,7 +95,6 @@ export const CompanyFactory = Factory.define(Company, ({ faker }) => {
   };
 })
   .relation("industry", () => IndustryFactory)
-  .relation("category", () => CategoryFactory)
   .relation("users", () => UserFactory)
   .relation("products", () => UserFactory)
   .relation("businessCards", () => UserFactory)

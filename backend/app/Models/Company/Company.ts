@@ -20,7 +20,6 @@ import ZplLabel from "../ZplLabel";
 import SmsApi from "../SmsApi";
 import ServiceList from "../ServiceList";
 import Industry from "App/Models/Company/Industry";
-import Category from "App/Models/Company/Category";
 import BusinessCard from "App/Models/Company/BusinessCard";
 
 export default class Company extends BaseModel {
@@ -31,9 +30,6 @@ export default class Company extends BaseModel {
 
   @column()
   public industryId: number;
-
-  @column()
-  public categoryId: number;
 
   @column()
   public name: string;
@@ -96,9 +92,6 @@ export default class Company extends BaseModel {
 
   @belongsTo(() => Industry)
   public industry: BelongsTo<typeof Industry>;
-
-  @belongsTo(() => Category)
-  public category: BelongsTo<typeof Category>;
 
   @hasMany(() => User)
   public users: HasMany<typeof User>;

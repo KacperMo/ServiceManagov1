@@ -4,18 +4,9 @@ import Category from "App/Models/Company/Category";
 export default class extends BaseSeeder {
   public async run() {
     await Category.createMany([
-      {
-        industry_id: 1,
-        name: "LCD replacement",
-      },
-      {
-        industry_id: 1,
-        name: "Software update",
-      },
-      {
-        industry_id: 1,
-        name: "Parts replacement",
-      },
+      { industryId: 1, name: "LCD replacement" },
+      { industryId: 1, name: "Software update" },
+      { industryId: 1, name: "Parts replacement" },
     ]);
   }
 }

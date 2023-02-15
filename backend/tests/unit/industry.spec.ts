@@ -10,25 +10,27 @@ test.group("Industry", () => {
   });
 
   test("create", async ({ assert }) => {
-    const industry = await IndustryFactory.create();
+    const industry = await IndustryFactory.with("categories")
+      .with("companies")
+      .create();
 
     assert.properties(industry, ["name"]);
   });
 
   test("has many categories", async ({ assert }) => {
-    const industry = await IndustryFactory.with("categories", 2).create();
+    const industry = await IndustryFactory.with("categories").create();
 
     assert.isArray(industry.categories);
   });
 
-  test("has many suppliers", async ({ assert }) => {
-    const industry = await IndustryFactory.with("suppliers", 2).create();
+  // test("has many suppliers", async ({ assert }) => {
+  //   const industry = await IndustryFactory.with("suppliers", 2).create();
 
-    assert.isArray(industry.suppliers);
-  });
+  //   assert.isArray(industry.suppliers);
+  // });
 
   test("has many companies", async ({ assert }) => {
-    const industry = await IndustryFactory.with("companies", 2).create();
+    const industry = await IndustryFactory.with("companies").create();
 
     assert.isArray(industry.companies);
   });

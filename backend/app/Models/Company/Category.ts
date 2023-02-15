@@ -1,14 +1,6 @@
 import { DateTime } from "luxon";
-import {
-  BaseModel,
-  column,
-  belongsTo,
-  BelongsTo,
-  hasMany,
-  HasMany,
-} from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm";
 import Industry from "./Industry";
-import Company from "./Company";
 
 export default class Category extends BaseModel {
   @column({ isPrimary: true })
@@ -28,7 +20,4 @@ export default class Category extends BaseModel {
 
   @belongsTo(() => Industry)
   public industry: BelongsTo<typeof Industry>;
-
-  @hasMany(() => Company)
-  public companies: HasMany<typeof Company>;
 }
